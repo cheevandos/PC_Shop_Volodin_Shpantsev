@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>PC_Shop_Business_Logic</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Binding Models\" />
+    <Folder Include="View Models\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Business Logic\" />
+  </ItemGroup>
+
+</Project>

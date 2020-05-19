@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PC Shop Business Logic", "PC Shop Business Logic\PC Shop Business Logic.csproj", "{9BDA746A-D338-4976-9791-98A09C92B925}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PC Shop Database Implementation", "PC Shop Database Implementation\PC Shop Database Implementation.csproj", "{19704354-1981-4DC2-96C8-219DED1CD3C2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9BDA746A-D338-4976-9791-98A09C92B925}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BDA746A-D338-4976-9791-98A09C92B925}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BDA746A-D338-4976-9791-98A09C92B925}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BDA746A-D338-4976-9791-98A09C92B925}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19704354-1981-4DC2-96C8-219DED1CD3C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19704354-1981-4DC2-96C8-219DED1CD3C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19704354-1981-4DC2-96C8-219DED1CD3C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19704354-1981-4DC2-96C8-219DED1CD3C2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09204BC6-4250-44BB-B8EF-104EB2997EEE}
+	EndGlobalSection
+EndGlobal
