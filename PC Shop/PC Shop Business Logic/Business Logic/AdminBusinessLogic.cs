@@ -5,12 +5,12 @@ using PC_Shop_Business_Logic.Enums;
 
 namespace PC_Shop_Business_Logic.Business_Logic
 {
-    public class AdminLogic
+    public class AdminBusinessLogic
     {
         private readonly IOrderLogic orderLogic;
         private readonly IRequestLogic requestLogic;
 
-        public AdminLogic(IOrderLogic orderLogic, IRequestLogic requestLogic)
+        public AdminBusinessLogic(IOrderLogic orderLogic, IRequestLogic requestLogic)
         {
             this.orderLogic = orderLogic;
             this.requestLogic = requestLogic;
@@ -135,9 +135,8 @@ namespace PC_Shop_Business_Logic.Business_Logic
             requestLogic.CreateOrUpdate(new RequestBindingModel
             {
                 SupplierID = model.SupplierID,
-                ComponentID = model.ComponentID,
-                Count = model.Count,
-                Status = RequestStatus.Создана
+                Status = RequestStatus.Создана,
+                Components = model.Components
             });
         }
     }

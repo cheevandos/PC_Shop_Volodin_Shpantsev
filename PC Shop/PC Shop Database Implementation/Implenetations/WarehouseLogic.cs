@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace PC_Shop_Database_Implementation.Implenetations
 {
-    class WarehouseLogic : IWarehouseLogic
+    public class WarehouseLogic : IWarehouseLogic
     {
         public void CreateOrUpdate(WarehouseBindingModel model)
         {

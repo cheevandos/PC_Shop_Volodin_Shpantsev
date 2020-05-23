@@ -34,6 +34,7 @@ namespace PC_Shop_Database_Implementation.Implenetations
                     context.Components.Add(component);
                 }
                 component.Name = model.Name;
+                component.Price = model.Price.Value;
                 context.SaveChanges();
             }
         }
@@ -64,7 +65,8 @@ namespace PC_Shop_Database_Implementation.Implenetations
                     .Select(rec => new ComponentViewModel
                     {
                         ID = rec.ID,
-                        Name = rec.Name
+                        Name = rec.Name,
+                        Price = rec.Price
                     })
                     .ToList();
             }

@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace PC_Shop_Database_Implementation.Implenetations
 {
-    class ComputerLogic : IComputerLogic
+    public class ComputerLogic : IComputerLogic
     {
         public void CreateOrUpdate(ComputerBindingModel model)
         {
