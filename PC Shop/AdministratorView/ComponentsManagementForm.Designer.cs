@@ -63,6 +63,7 @@
             this.createButton.TabIndex = 2;
             this.createButton.Text = "Добавить";
             this.createButton.UseVisualStyleBackColor = false;
+            this.createButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 
             // updateButton
             // 
@@ -77,6 +78,7 @@
             this.updateButton.TabIndex = 3;
             this.updateButton.Text = "Изменить";
             this.updateButton.UseVisualStyleBackColor = false;
+            this.updateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
             // deleteButton
             // 
@@ -91,6 +93,7 @@
             this.deleteButton.TabIndex = 4;
             this.deleteButton.Text = "Удалить";
             this.deleteButton.UseVisualStyleBackColor = false;
+            this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // refreshButton
             // 
@@ -105,6 +108,7 @@
             this.refreshButton.TabIndex = 5;
             this.refreshButton.Text = "Обновить список";
             this.refreshButton.UseVisualStyleBackColor = false;
+            this.refreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
             // ComponentsManagementForm
             // 
@@ -124,6 +128,7 @@
             this.Name = "ComponentsManagementForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Комплектующие";
+            this.Load += new System.EventHandler(this.ComponentsManagementForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.componentsGridView)).EndInit();
             this.ResumeLayout(false);
 

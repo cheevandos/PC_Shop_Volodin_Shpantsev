@@ -74,6 +74,7 @@
             this.componentsGridView.DefaultCellStyle = dataGridViewCellStyle1;
             this.componentsGridView.Location = new System.Drawing.Point(12, 171);
             this.componentsGridView.Name = "componentsGridView";
+            this.componentsGridView.ReadOnly = true;
             this.componentsGridView.Size = new System.Drawing.Size(670, 250);
             this.componentsGridView.TabIndex = 1;
             // 
@@ -114,6 +115,7 @@
             this.addComponentButton.TabIndex = 2;
             this.addComponentButton.Text = "Добавить";
             this.addComponentButton.UseVisualStyleBackColor = false;
+            this.addComponentButton.Click += new System.EventHandler(this.AddComponentButton_Click);
             // 
             // updateComponentButton
             // 
@@ -129,6 +131,7 @@
             this.updateComponentButton.TabIndex = 3;
             this.updateComponentButton.Text = "Изменить";
             this.updateComponentButton.UseVisualStyleBackColor = false;
+            this.updateComponentButton.Click += new System.EventHandler(this.UpdateComponentButton_Click);
             // 
             // deleteComponentButton
             // 
@@ -144,6 +147,7 @@
             this.deleteComponentButton.TabIndex = 4;
             this.deleteComponentButton.Text = "Удалить";
             this.deleteComponentButton.UseVisualStyleBackColor = false;
+            this.deleteComponentButton.Click += new System.EventHandler(this.DeleteComponentButton_Click);
             // 
             // refreshComponentsButton
             // 
@@ -159,6 +163,7 @@
             this.refreshComponentsButton.TabIndex = 5;
             this.refreshComponentsButton.Text = "Обновить список";
             this.refreshComponentsButton.UseVisualStyleBackColor = false;
+            this.refreshComponentsButton.Click += new System.EventHandler(this.RefreshComponentsButton_Click);
             // 
             // computerNameLabel
             // 
@@ -247,6 +252,7 @@
             this.saveButton.TabIndex = 11;
             this.saveButton.Text = "Сохранить";
             this.saveButton.UseVisualStyleBackColor = false;
+            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // cancelButton
             // 
@@ -262,6 +268,7 @@
             this.cancelButton.TabIndex = 12;
             this.cancelButton.Text = "Отмена";
             this.cancelButton.UseVisualStyleBackColor = false;
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // ComputerCreationForm
             // 
@@ -288,6 +295,7 @@
             this.Name = "ComputerCreationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Новый ПК";
+            this.Load += new System.EventHandler(this.ComputerCreationForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.componentsGridView)).EndInit();
             this.computerNamePanel.ResumeLayout(false);
             this.computerNamePanel.PerformLayout();

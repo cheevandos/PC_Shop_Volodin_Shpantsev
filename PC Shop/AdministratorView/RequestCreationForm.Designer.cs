@@ -42,7 +42,7 @@
             this.deleteComponentButton = new System.Windows.Forms.Button();
             this.refreshComponentsButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.createButton = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.componentsGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -197,20 +197,20 @@
             this.cancelButton.Text = "Отмена";
             this.cancelButton.UseVisualStyleBackColor = false;
             // 
-            // createButton
+            // saveButton
             // 
-            this.createButton.BackColor = System.Drawing.Color.White;
-            this.createButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.createButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.createButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.createButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.createButton.Location = new System.Drawing.Point(12, 419);
-            this.createButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.createButton.Name = "createButton";
-            this.createButton.Size = new System.Drawing.Size(332, 40);
-            this.createButton.TabIndex = 16;
-            this.createButton.Text = "Сохранить";
-            this.createButton.UseVisualStyleBackColor = false;
+            this.saveButton.BackColor = System.Drawing.Color.White;
+            this.saveButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.saveButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.saveButton.Location = new System.Drawing.Point(12, 419);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(332, 40);
+            this.saveButton.TabIndex = 16;
+            this.saveButton.Text = "Сохранить";
+            this.saveButton.UseVisualStyleBackColor = false;
             // 
             // RequestCreationForm
             // 
@@ -219,7 +219,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(694, 471);
             this.Controls.Add(this.cancelButton);
-            this.Controls.Add(this.createButton);
+            this.Controls.Add(this.saveButton);
             this.Controls.Add(this.componentsLabel);
             this.Controls.Add(this.addComponentButton);
             this.Controls.Add(this.updateComponentButton);
@@ -253,6 +253,6 @@
         private System.Windows.Forms.Button deleteComponentButton;
         private System.Windows.Forms.Button refreshComponentsButton;
         private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.Button createButton;
+        private System.Windows.Forms.Button saveButton;
     }
 }

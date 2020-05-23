@@ -29,26 +29,26 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ComputersManagementForm));
-            this.componentsGridView = new System.Windows.Forms.DataGridView();
+            this.computersGridView = new System.Windows.Forms.DataGridView();
             this.createButton = new System.Windows.Forms.Button();
             this.updateButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.refreshButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.componentsGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.computersGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // componentsGridView
+            // computersGridView
             // 
-            this.componentsGridView.AllowUserToAddRows = false;
-            this.componentsGridView.AllowUserToDeleteRows = false;
-            this.componentsGridView.AllowUserToResizeRows = false;
-            this.componentsGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.componentsGridView.BackgroundColor = System.Drawing.Color.White;
-            this.componentsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.componentsGridView.Location = new System.Drawing.Point(12, 58);
-            this.componentsGridView.Name = "componentsGridView";
-            this.componentsGridView.Size = new System.Drawing.Size(670, 400);
-            this.componentsGridView.TabIndex = 1;
+            this.computersGridView.AllowUserToAddRows = false;
+            this.computersGridView.AllowUserToDeleteRows = false;
+            this.computersGridView.AllowUserToResizeRows = false;
+            this.computersGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.computersGridView.BackgroundColor = System.Drawing.Color.White;
+            this.computersGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.computersGridView.Location = new System.Drawing.Point(12, 58);
+            this.computersGridView.Name = "computersGridView";
+            this.computersGridView.Size = new System.Drawing.Size(670, 400);
+            this.computersGridView.TabIndex = 1;
             // 
             // createButton
             // 
@@ -63,6 +63,7 @@
             this.createButton.TabIndex = 2;
             this.createButton.Text = "Добавить";
             this.createButton.UseVisualStyleBackColor = false;
+            this.createButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 
             // updateButton
             // 
@@ -77,6 +78,7 @@
             this.updateButton.TabIndex = 3;
             this.updateButton.Text = "Изменить";
             this.updateButton.UseVisualStyleBackColor = false;
+            this.updateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
             // deleteButton
             // 
@@ -91,6 +93,7 @@
             this.deleteButton.TabIndex = 4;
             this.deleteButton.Text = "Удалить";
             this.deleteButton.UseVisualStyleBackColor = false;
+            this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // refreshButton
             // 
@@ -105,10 +108,11 @@
             this.refreshButton.TabIndex = 5;
             this.refreshButton.Text = "Обновить список";
             this.refreshButton.UseVisualStyleBackColor = false;
+            this.refreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
             // ComputersManagementForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(694, 470);
@@ -116,7 +120,7 @@
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.updateButton);
             this.Controls.Add(this.createButton);
-            this.Controls.Add(this.componentsGridView);
+            this.Controls.Add(this.computersGridView);
             this.Font = new System.Drawing.Font("Segoe UI", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -124,14 +128,15 @@
             this.Name = "ComputersManagementForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ПК";
-            ((System.ComponentModel.ISupportInitialize)(this.componentsGridView)).EndInit();
+            this.Load += new System.EventHandler(this.ComputersManagementForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.computersGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView componentsGridView;
+        private System.Windows.Forms.DataGridView computersGridView;
         private System.Windows.Forms.Button createButton;
         private System.Windows.Forms.Button updateButton;
         private System.Windows.Forms.Button deleteButton;

@@ -55,6 +55,7 @@
             this.createButton.TabIndex = 2;
             this.createButton.Text = "Сохранить";
             this.createButton.UseVisualStyleBackColor = false;
+            this.createButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 
             // cancelButton
             // 
@@ -70,6 +71,7 @@
             this.cancelButton.TabIndex = 3;
             this.cancelButton.Text = "Отмена";
             this.cancelButton.UseVisualStyleBackColor = false;
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // componentNameTextBox
             // 

@@ -53,6 +53,7 @@
             this.addButton.TabIndex = 2;
             this.addButton.Text = "Добавить";
             this.addButton.UseVisualStyleBackColor = false;
+            this.addButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // cancelButton
             // 
@@ -68,6 +69,7 @@
             this.cancelButton.TabIndex = 3;
             this.cancelButton.Text = "Отмена";
             this.cancelButton.UseVisualStyleBackColor = false;
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // componentLabel
             // 
@@ -139,6 +141,7 @@
             this.countPanel.ResumeLayout(false);
             this.countPanel.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         #endregion

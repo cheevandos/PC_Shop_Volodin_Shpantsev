@@ -13,7 +13,7 @@ namespace AdministratorView
         public new IUnityContainer Container { get; set; }
         private readonly IComponentLogic logic;
         public int ID { set { Id = value; } }
-        public int? Id;
+        private int? Id;
 
         public ComponentCreationForm(IComponentLogic logic)
         {
@@ -35,7 +35,10 @@ namespace AdministratorView
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+                    MessageBox.Show(
+                        ex.Message,
+                        "Ошибка загрузки комплектующих",
+                        MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
             }
@@ -45,7 +48,10 @@ namespace AdministratorView
         {
             if (string.IsNullOrEmpty(componentNameTextBox.Text))
             {
-                MessageBox.Show("Введите название", "Ошибка", MessageBoxButtons.OK,
+                MessageBox.Show(
+                    "Поле \"Название\" не заполнено", 
+                    "Ошибка",
+                    MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 return;
             }
@@ -54,16 +60,23 @@ namespace AdministratorView
                 logic.CreateOrUpdate(new ComponentBindingModel
                 {
                     ID = Id,
-                    Name = componentNameTextBox.Text
+                    Name = componentNameTextBox.Text,
+                    Price = Convert.ToDecimal(componentPriceTextBox.Text)
                 });
-                MessageBox.Show("Сохранение прошло успешно", "Сообщение",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "Сохранение прошло успешно",
+                    "Сообщение",
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Information); 
                 DialogResult = DialogResult.OK;
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+                MessageBox.Show(
+                    ex.Message, 
+                    "Ошибка при сохранении комплектующего", 
+                    MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
         }

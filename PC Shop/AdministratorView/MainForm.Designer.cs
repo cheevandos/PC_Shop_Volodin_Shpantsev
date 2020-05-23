@@ -38,6 +38,7 @@
             this.confirmButton = new System.Windows.Forms.Button();
             this.ordersGridView = new System.Windows.Forms.DataGridView();
             this.requestsTabPage = new System.Windows.Forms.TabPage();
+            this.refreshRequestsButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.updateButton = new System.Windows.Forms.Button();
             this.createButton = new System.Windows.Forms.Button();
@@ -48,7 +49,7 @@
             this.suppliersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.warehousesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.refreshRequestsButton = new System.Windows.Forms.Button();
+            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl.SuspendLayout();
             this.ordersTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ordersGridView)).BeginInit();
@@ -177,6 +178,19 @@
             this.requestsTabPage.Text = "Заявки";
             this.requestsTabPage.UseVisualStyleBackColor = true;
             // 
+            // refreshRequestsButton
+            // 
+            this.refreshRequestsButton.BackColor = System.Drawing.Color.White;
+            this.refreshRequestsButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.refreshRequestsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.refreshRequestsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.refreshRequestsButton.Location = new System.Drawing.Point(692, 144);
+            this.refreshRequestsButton.Name = "refreshRequestsButton";
+            this.refreshRequestsButton.Size = new System.Drawing.Size(163, 40);
+            this.refreshRequestsButton.TabIndex = 11;
+            this.refreshRequestsButton.Text = "Обновить список";
+            this.refreshRequestsButton.UseVisualStyleBackColor = false;
+            // 
             // deleteButton
             // 
             this.deleteButton.BackColor = System.Drawing.Color.White;
@@ -215,6 +229,7 @@
             this.createButton.TabIndex = 1;
             this.createButton.Text = "Создать заявку";
             this.createButton.UseVisualStyleBackColor = false;
+            this.createButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 
             // requestsGridView
             // 
@@ -239,7 +254,8 @@
             this.componentsToolStripMenuItem,
             this.suppliersToolStripMenuItem,
             this.warehousesToolStripMenuItem,
-            this.newOrderToolStripMenuItem});
+            this.newOrderToolStripMenuItem,
+            this.reportsToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
             this.mainMenuStrip.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -255,6 +271,7 @@
             this.computersToolStripMenuItem.Size = new System.Drawing.Size(135, 25);
             this.computersToolStripMenuItem.Text = "ПК";
             this.computersToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.computersToolStripMenuItem.Click += new System.EventHandler(this.ComputersToolStripMenuItem_Click);
             // 
             // componentsToolStripMenuItem
             // 
@@ -263,6 +280,7 @@
             this.componentsToolStripMenuItem.Name = "componentsToolStripMenuItem";
             this.componentsToolStripMenuItem.Size = new System.Drawing.Size(135, 25);
             this.componentsToolStripMenuItem.Text = "Комплектующие";
+            this.componentsToolStripMenuItem.Click += new System.EventHandler(this.ComponentsToolStripMenuItem_Click);
             // 
             // suppliersToolStripMenuItem
             // 
@@ -271,6 +289,7 @@
             this.suppliersToolStripMenuItem.Size = new System.Drawing.Size(135, 25);
             this.suppliersToolStripMenuItem.Text = "Поставщики";
             this.suppliersToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.suppliersToolStripMenuItem.Click += new System.EventHandler(this.SuppliersToolStripMenuItem_Click);
             // 
             // warehousesToolStripMenuItem
             // 
@@ -280,31 +299,28 @@
             this.warehousesToolStripMenuItem.Size = new System.Drawing.Size(135, 25);
             this.warehousesToolStripMenuItem.Text = "Склады";
             this.warehousesToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.warehousesToolStripMenuItem.Click += new System.EventHandler(this.WarehousesToolStripMenuItem_Click);
             // 
             // newOrderToolStripMenuItem
             // 
             this.newOrderToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.newOrderToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.newOrderToolStripMenuItem.Name = "newOrderToolStripMenuItem";
             this.newOrderToolStripMenuItem.Size = new System.Drawing.Size(135, 25);
             this.newOrderToolStripMenuItem.Text = "Новый заказ";
             this.newOrderToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.newOrderToolStripMenuItem.Click += new System.EventHandler(this.NewOrderToolStripMenuItem_Click);
             // 
-            // refreshRequestsButton
+            // reportsToolStripMenuItem
             // 
-            this.refreshRequestsButton.BackColor = System.Drawing.Color.White;
-            this.refreshRequestsButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.refreshRequestsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.refreshRequestsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.refreshRequestsButton.Location = new System.Drawing.Point(692, 144);
-            this.refreshRequestsButton.Name = "refreshRequestsButton";
-            this.refreshRequestsButton.Size = new System.Drawing.Size(163, 40);
-            this.refreshRequestsButton.TabIndex = 11;
-            this.refreshRequestsButton.Text = "Обновить список";
-            this.refreshRequestsButton.UseVisualStyleBackColor = false;
+            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(135, 25);
+            this.reportsToolStripMenuItem.Text = "Отчеты";
+            this.reportsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1034, 492);
@@ -317,7 +333,8 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Магазин компьютерной техники";
+            this.Text = "Магазин компьютерной техники. Панель администратора";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabControl.ResumeLayout(false);
             this.ordersTabPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ordersGridView)).EndInit();
@@ -352,6 +369,7 @@
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.ToolStripMenuItem newOrderToolStripMenuItem;
         private System.Windows.Forms.Button refreshRequestsButton;
+        private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
     }
 }
 
