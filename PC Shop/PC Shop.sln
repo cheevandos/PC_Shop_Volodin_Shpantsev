@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PC Shop Business Logic", "PC Shop Business Logic\PC Shop Business Logic.csproj", "{9BDA746A-D338-4976-9791-98A09C92B925}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PC Shop Database Implementation", "PC Shop Database Implementation\PC Shop Database Implementation.csproj", "{19704354-1981-4DC2-96C8-219DED1CD3C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PC Shop Database Implementation", "PC Shop Database Implementation\PC Shop Database Implementation.csproj", "{19704354-1981-4DC2-96C8-219DED1CD3C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdministratorView", "AdministratorView\AdministratorView.csproj", "{9695D56D-AE38-43C6-8C54-BA7557EF1457}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{19704354-1981-4DC2-96C8-219DED1CD3C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19704354-1981-4DC2-96C8-219DED1CD3C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19704354-1981-4DC2-96C8-219DED1CD3C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9695D56D-AE38-43C6-8C54-BA7557EF1457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9695D56D-AE38-43C6-8C54-BA7557EF1457}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9695D56D-AE38-43C6-8C54-BA7557EF1457}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9695D56D-AE38-43C6-8C54-BA7557EF1457}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

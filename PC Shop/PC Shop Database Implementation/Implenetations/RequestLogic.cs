@@ -2,6 +2,7 @@
 using PC_Shop_Business_Logic.Binding_Models;
 using PC_Shop_Business_Logic.Interfaces;
 using PC_Shop_Business_Logic.View_Models;
+using PC_Shop_Business_Logic.Enums;
 using PC_Shop_Database_Implementation.Models;
 using System;
 using System.Collections.Generic;
@@ -15,42 +16,101 @@ namespace PC_Shop_Database_Implementation.Implenetations
         {
             using (var context = new PCShopDatabase())
             {
-                Request request;
-                if (model.ID.HasValue)
+                using (var transaction = context.Database.BeginTransaction())
                 {
-                    request = context.Requests.FirstOrDefault(rec => rec.ID == model.ID);
-                    if (request == null)
+                    try
                     {
-                        throw new Exception("Заявка не найдена");
+                        Request request;
+                        if (model.ID.HasValue)
+                        {
+                            request = context.Requests.FirstOrDefault(rec => rec.ID == model.ID);
+                            if (request == null)
+                            {
+                                throw new Exception("Заявка не найдена");
+                            }
+                            else if (model.Status == RequestStatus.Создана)
+                            {
+                                var requestComponents = context.RequestComponents
+                                    .Where(rec => rec.RequestID == model.ID.Value).ToList();
+                                context.RequestComponents.RemoveRange(requestComponents.Where(rec =>
+                                    !model.Components.ContainsKey(rec.ComponentID)).ToList());
+                                foreach (var updComponent in requestComponents)
+                                {
+                                    updComponent.Count = model.Components[updComponent.ComponentID].Item2;
+                                    model.Components.Remove(updComponent.ComponentID);
+                                }
+                                context.SaveChanges();
+                            }
+                            else
+                            {
+                                throw new Exception("Невозможно изменить заявку. " +
+                                    "Заявка уже в обработке или исполнена");
+                            }
+                        }
+                        else
+                        {
+                            request = new Request();
+                            context.Requests.Add(request);
+                        }
+                        request.SupplierID = model.SupplierID;
+                        request.Status = model.Status;
+                        context.SaveChanges();
+                        foreach (var component in model.Components)
+                        {
+                            context.RequestComponents.Add(new RequestComponent
+                            {
+                                RequestID = request.ID,
+                                ComponentID = component.Key,
+                                Count = component.Value.Item2
+                            });
+                            context.SaveChanges();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (Exception)
+                    {
+                        transaction.Rollback();
+                        throw;
                     }
                 }
-                else
-                {
-                    request = new Request();
-                    context.Requests.Add(request);
-                }
-                request.SupplierID = model.SupplierID;
-                request.Status = model.Status;
-                request.ComponentID = model.ComponentID;
-                request.Count = model.Count;
-                context.SaveChanges();
             }
         }
 
         public void Delete(RequestBindingModel model)
         {
-            using (var context = new PCShopDatabase())
+            if (model.Status != RequestStatus.Обрабатывается)
             {
-                Request request = context.Requests.FirstOrDefault(rec => rec.ID == model.ID);
-                if (request != null)
+                using (var context = new PCShopDatabase())
                 {
-                    context.Requests.Remove(request);
-                    context.SaveChanges();
+                    using (var transaction = context.Database.BeginTransaction())
+                    {
+                        try
+                        {
+                            context.RequestComponents.RemoveRange(context
+                                .RequestComponents.Where(rec => rec.RequestID == model.ID));
+                            Request request = context.Requests.FirstOrDefault(rec => rec.ID == model.ID);
+                            if (request != null)
+                            {
+                                context.Requests.Remove(request);
+                                context.SaveChanges();
+                            }
+                            else
+                            {
+                                throw new Exception("Заявка не найдена");
+                            }
+                            transaction.Commit();
+                        }
+                        catch (Exception)
+                        {
+                            transaction.Rollback();
+                            throw;
+                        }
+                    } 
                 }
-                else
-                {
-                    throw new Exception("Заявка не найдена");
-                }
+            } 
+            else
+            {
+                throw new Exception("Невожможно удалить заявку. Заявка в обработке");
             }
         }
 
@@ -59,20 +119,21 @@ namespace PC_Shop_Database_Implementation.Implenetations
             using (var context = new PCShopDatabase())
             {
                 return context.Requests
-                .Include(rec => rec.Component)
-                .Include(rec => rec.Supplier)
-                .Where(rec => model == null || rec.ID == model.ID)
-                .Select(rec => new RequestViewModel
-                {
-                    ID = rec.ID,
-                    SupplierID = rec.SupplierID,
-                    SupplierName = rec.Supplier.FullName,
-                    ComponentID = rec.ComponentID,
-                    ComponentName = rec.Component.Name,
-                    Count = rec.Count,
-                    Status = rec.Status
-                })
-                .ToList();
+                    .Include(rec => rec.Supplier)
+                    .Where(rec => model == null || rec.ID == model.ID)
+                    .ToList()
+                    .Select(rec => new RequestViewModel
+                    {
+                        ID = rec.ID,
+                        SupplierName = rec.Supplier.FullName,
+                        Status = rec.Status,
+                        Components = context.RequestComponents
+                            .Include(recRC => recRC.Component)
+                            .Where(recRC => recRC.RequestID == rec.ID)
+                            .ToDictionary(recRC => recRC.ComponentID, recPC =>
+                            (recPC.Component?.Name, recPC.Count))
+                    })
+                    .ToList();
             }
         }
     }

@@ -32,8 +32,8 @@ namespace PC_Shop_Business_Logic.Business_Logic
             {
                 ID = request.ID,
                 SupplierID = request.SupplierID,
-                ComponentID = request.ComponentID,
-                Status = RequestStatus.Обрабатывается
+                Status = RequestStatus.Обрабатывается,
+                Components = request.Components
             });
         }
 
@@ -55,8 +55,8 @@ namespace PC_Shop_Business_Logic.Business_Logic
             {
                 ID = request.ID,
                 SupplierID = request.SupplierID,
-                ComponentID = request.ComponentID,
-                Status = RequestStatus.Исполнена
+                Status = RequestStatus.Исполнена,
+                Components = request.Components
             });
         }
 

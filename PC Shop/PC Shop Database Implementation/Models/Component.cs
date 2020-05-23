@@ -14,6 +14,6 @@ namespace PC_Shop_Database_Implementation.Models
         [ForeignKey("ComponentID")]
         public virtual List<WarehouseComponent> WarehouseComponents { get; set; }
         [ForeignKey("ComponentID")]
-        public virtual List<Request> Requests { get; set; }
+        public virtual List<RequestComponent> RequestComponents { get; set; }
     }
 }

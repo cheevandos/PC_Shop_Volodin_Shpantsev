@@ -20,6 +20,7 @@ namespace PC_Shop_Database_Implementation
         public virtual DbSet<ComputerComponent> ComputerComponents { set; get; }
         public virtual DbSet<Order> Orders { set; get; }
         public virtual DbSet<Request> Requests { get; set; }
+        public virtual DbSet<RequestComponent> RequestComponents { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
         public virtual DbSet<WarehouseComponent> WarehouseComponents { get; set; }
