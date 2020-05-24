@@ -13,7 +13,7 @@ namespace PC_Shop_Database_Implementation.Models
         public int Capacity { get; set; }
         [ForeignKey("WarehouseID")]
         public virtual List<WarehouseComponent> WarehouseComponents { get; set; }
-        [ForeignKey("WarehouseID")]
+        public int SupplierID { get; set; }
         public virtual Supplier Supplier { get; set; }
     }
 }

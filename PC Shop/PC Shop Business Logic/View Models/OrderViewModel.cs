@@ -8,17 +8,17 @@ namespace PC_Shop_Business_Logic.View_Models
     {
         public int ID { get; set; }
         public int ComputerID { get; set; }
-        [DisplayName("Название компьютера")]
+        [DisplayName("Название ПК")]
         public string ComputerName { get; set; }
-        [DisplayName("Количество")]
+        [DisplayName("Кол-во")]
         public int Count { get; set; }
         [DisplayName("Сумма заказа")]
         public decimal Amount { get; set; }
         [DisplayName("Статус")]
         public OrderStatus Status { get; set; }
-        [DisplayName("Дата создания")]
+        [DisplayName("Создан")]
         public DateTime CreationDate { get; set; }
-        [DisplayName("Дата завершения")]
+        [DisplayName("Завершен")]
         public DateTime? CompletionDate { get; set; }
     }
 }

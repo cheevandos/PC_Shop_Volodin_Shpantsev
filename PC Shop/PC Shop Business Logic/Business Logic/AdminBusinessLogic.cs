@@ -23,7 +23,7 @@ namespace PC_Shop_Business_Logic.Business_Logic
                 ComputerID = model.ComputerID,
                 Count = model.Count,
                 Amount = model.Amount,
-                CreationDate = model.CreationDate,
+                CreationDate = DateTime.Now,
                 Status = OrderStatus.Создан
             });
         }

@@ -125,7 +125,7 @@ namespace PC_Shop_Database_Implementation.Implenetations
                     .Select(rec => new RequestViewModel
                     {
                         ID = rec.ID,
-                        SupplierName = rec.Supplier.FullName,
+                        SupplierLogin = rec.Supplier.Login,
                         Status = rec.Status,
                         Components = context.RequestComponents
                             .Include(recRC => recRC.Component)

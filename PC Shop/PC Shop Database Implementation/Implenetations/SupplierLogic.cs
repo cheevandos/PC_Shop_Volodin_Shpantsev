@@ -33,7 +33,6 @@ namespace PC_Shop_Database_Implementation.Implenetations
                     supplier = new Supplier();
                     context.Suppliers.Add(supplier);
                 }
-                supplier.WarehouseID = model.WarehouseID;
                 supplier.FullName = model.FullName;
                 supplier.Login = model.Login;
                 supplier.Password = model.Password;

@@ -13,8 +13,8 @@ namespace PC_Shop_Database_Implementation.Models
         public string Login { get; set; }
         [Required]
         public string Password { get; set; }
-        public int WarehouseID { get; set; }
-        public virtual Warehouse Warehouse { get; set; }
+        [ForeignKey("SupplierID")]
+        public virtual List<Warehouse> Warehouses { get; set; }
         [ForeignKey("SupplierID")]
         public virtual List<Request> Requests { get; set; }
     }
