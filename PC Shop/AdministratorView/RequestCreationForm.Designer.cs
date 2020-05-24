@@ -136,6 +136,7 @@
             this.addComponentButton.TabIndex = 11;
             this.addComponentButton.Text = "Добавить";
             this.addComponentButton.UseVisualStyleBackColor = false;
+            this.addComponentButton.Click += new System.EventHandler(this.AddComponentButton_Click);
             // 
             // updateComponentButton
             // 
@@ -151,6 +152,7 @@
             this.updateComponentButton.TabIndex = 12;
             this.updateComponentButton.Text = "Изменить";
             this.updateComponentButton.UseVisualStyleBackColor = false;
+            this.updateComponentButton.Click += new System.EventHandler(this.UpdateComponentButton_Click);
             // 
             // deleteComponentButton
             // 
@@ -166,6 +168,7 @@
             this.deleteComponentButton.TabIndex = 13;
             this.deleteComponentButton.Text = "Удалить";
             this.deleteComponentButton.UseVisualStyleBackColor = false;
+            this.deleteComponentButton.Click += new System.EventHandler(this.DeleteComponentButton_Click);
             // 
             // refreshComponentsButton
             // 
@@ -181,6 +184,7 @@
             this.refreshComponentsButton.TabIndex = 14;
             this.refreshComponentsButton.Text = "Обновить список";
             this.refreshComponentsButton.UseVisualStyleBackColor = false;
+            this.refreshComponentsButton.Click += new System.EventHandler(this.RefreshComponentsButton_Click);
             // 
             // cancelButton
             // 
@@ -196,6 +200,7 @@
             this.cancelButton.TabIndex = 17;
             this.cancelButton.Text = "Отмена";
             this.cancelButton.UseVisualStyleBackColor = false;
+            this.cancelButton.Click += new System.EventHandler(this.СancelButton_Click);
             // 
             // saveButton
             // 
@@ -211,6 +216,7 @@
             this.saveButton.TabIndex = 16;
             this.saveButton.Text = "Сохранить";
             this.saveButton.UseVisualStyleBackColor = false;
+            this.saveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // RequestCreationForm
             // 
@@ -235,6 +241,7 @@
             this.Name = "RequestCreationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Новая заявка";
+            this.Load += new System.EventHandler(this.RequestCreationForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.componentsGridView)).EndInit();
             this.ResumeLayout(false);
 

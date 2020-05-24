@@ -31,6 +31,7 @@ namespace AdministratorView
                     if (componentView != null)
                     {
                         componentNameTextBox.Text = componentView.Name;
+                        componentPriceTextBox.Text = componentView.Price.ToString();
                     }
                 }
                 catch (Exception ex)
@@ -50,6 +51,15 @@ namespace AdministratorView
             {
                 MessageBox.Show(
                     "Поле \"Название\" не заполнено", 
+                    "Ошибка",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrEmpty(componentPriceTextBox.Text))
+            {
+                MessageBox.Show(
+                    "Поле \"Цена\" не заполнено",
                     "Ошибка",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);

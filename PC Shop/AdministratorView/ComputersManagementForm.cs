@@ -32,6 +32,7 @@ namespace AdministratorView
                 {
                     computersGridView.DataSource = computersList;
                     computersGridView.Columns[0].Visible = false;
+                    computersGridView.Columns[3].Visible = false;
                     computersGridView.AutoResizeColumns();
                 }
             }

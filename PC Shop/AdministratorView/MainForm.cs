@@ -38,20 +38,9 @@ namespace AdministratorView
                 List<OrderViewModel> ordersList = orderLogic.Read(null);
                 if (ordersList != null)
                 {
-                    ordersGridView.Rows.Clear();
-                    foreach (var order in ordersList)
-                    {
-                        ordersGridView.Rows.Add(new object[]
-                        {
-                            order.ID,
-                            order.ComputerName,
-                            order.Count,
-                            order.Amount,
-                            order.Status,
-                            order.CreationDate,
-                            order.CompletionDate
-                        });
-                    }
+                    ordersGridView.DataSource = ordersList;
+                    ordersGridView.Columns[0].Visible = false;
+                    ordersGridView.Columns[1].Visible = false;
                     ordersGridView.AutoResizeColumns();
                 }
             }
@@ -72,17 +61,14 @@ namespace AdministratorView
                 List<RequestViewModel> requestsList = requestLogic.Read(null);
                 if (requestsList != null)
                 {
-                    requestsGridView.Rows.Clear();
-                    foreach (var request in requestsList)
+                    if (requestsList != null)
                     {
-                        requestsGridView.Rows.Add(new object[]
-                        {
-                            request.ID,
-                            request.SupplierName,
-                            request.Status
-                        });
+                        requestsGridView.DataSource = requestsList;
+                        requestsGridView.Columns[0].Visible = false;
+                        requestsGridView.Columns[1].Visible = false;
+                        requestsGridView.Columns[4].Visible = false;
+                        requestsGridView.AutoResizeColumns();
                     }
-                    requestsGridView.AutoResizeColumns();
                 }
             }
             catch (Exception ex)
@@ -113,12 +99,6 @@ namespace AdministratorView
             form.ShowDialog();
         }
 
-        private void WarehousesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<WarehousesListForm>();
-            form.ShowDialog();
-        }
-
         private void NewOrderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<OrderCreationForm>();
@@ -129,6 +109,13 @@ namespace AdministratorView
         private void CreateButton_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<RequestCreationForm>();
+            form.ShowDialog();
+            LoadRequests();
+        }
+
+        private void newSupplierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<SupplierCreationForm>();
             form.ShowDialog();
         }
     }

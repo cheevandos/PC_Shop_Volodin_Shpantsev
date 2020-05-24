@@ -29,23 +29,24 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SuppliersListForm));
-            this.componentsGridView = new System.Windows.Forms.DataGridView();
+            this.suppliersGridView = new System.Windows.Forms.DataGridView();
             this.refreshButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.componentsGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.suppliersGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // componentsGridView
+            // suppliersGridView
             // 
-            this.componentsGridView.AllowUserToAddRows = false;
-            this.componentsGridView.AllowUserToDeleteRows = false;
-            this.componentsGridView.AllowUserToResizeRows = false;
-            this.componentsGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.componentsGridView.BackgroundColor = System.Drawing.Color.White;
-            this.componentsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.componentsGridView.Location = new System.Drawing.Point(12, 58);
-            this.componentsGridView.Name = "componentsGridView";
-            this.componentsGridView.Size = new System.Drawing.Size(670, 200);
-            this.componentsGridView.TabIndex = 1;
+            this.suppliersGridView.AllowUserToAddRows = false;
+            this.suppliersGridView.AllowUserToDeleteRows = false;
+            this.suppliersGridView.AllowUserToResizeRows = false;
+            this.suppliersGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.suppliersGridView.BackgroundColor = System.Drawing.Color.White;
+            this.suppliersGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.suppliersGridView.Location = new System.Drawing.Point(12, 58);
+            this.suppliersGridView.Name = "suppliersGridView";
+            this.suppliersGridView.ReadOnly = true;
+            this.suppliersGridView.Size = new System.Drawing.Size(670, 200);
+            this.suppliersGridView.TabIndex = 1;
             // 
             // refreshButton
             // 
@@ -60,6 +61,7 @@
             this.refreshButton.TabIndex = 5;
             this.refreshButton.Text = "Обновить список";
             this.refreshButton.UseVisualStyleBackColor = false;
+            this.refreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
             // SuppliersListForm
             // 
@@ -68,7 +70,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(694, 270);
             this.Controls.Add(this.refreshButton);
-            this.Controls.Add(this.componentsGridView);
+            this.Controls.Add(this.suppliersGridView);
             this.Font = new System.Drawing.Font("Segoe UI", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -76,14 +78,15 @@
             this.Name = "SuppliersListForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Поставщики";
-            ((System.ComponentModel.ISupportInitialize)(this.componentsGridView)).EndInit();
+            this.Load += new System.EventHandler(this.SuppliersListForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.suppliersGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView componentsGridView;
+        private System.Windows.Forms.DataGridView suppliersGridView;
         private System.Windows.Forms.Button refreshButton;
     }
 }

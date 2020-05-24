@@ -47,9 +47,9 @@
             this.computersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.componentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.suppliersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.warehousesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newSupplierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl.SuspendLayout();
             this.ordersTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ordersGridView)).BeginInit();
@@ -66,7 +66,7 @@
             this.tabControl.Location = new System.Drawing.Point(152, 12);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(870, 468);
+            this.tabControl.Size = new System.Drawing.Size(1120, 468);
             this.tabControl.TabIndex = 0;
             // 
             // ordersTabPage
@@ -80,7 +80,7 @@
             this.ordersTabPage.Location = new System.Drawing.Point(4, 30);
             this.ordersTabPage.Name = "ordersTabPage";
             this.ordersTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.ordersTabPage.Size = new System.Drawing.Size(862, 434);
+            this.ordersTabPage.Size = new System.Drawing.Size(1112, 434);
             this.ordersTabPage.TabIndex = 0;
             this.ordersTabPage.Text = "Заказы";
             this.ordersTabPage.UseVisualStyleBackColor = true;
@@ -91,7 +91,7 @@
             this.refreshOrdersButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.refreshOrdersButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
             this.refreshOrdersButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.refreshOrdersButton.Location = new System.Drawing.Point(693, 190);
+            this.refreshOrdersButton.Location = new System.Drawing.Point(943, 190);
             this.refreshOrdersButton.Name = "refreshOrdersButton";
             this.refreshOrdersButton.Size = new System.Drawing.Size(163, 40);
             this.refreshOrdersButton.TabIndex = 10;
@@ -104,7 +104,7 @@
             this.getPaidButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.getPaidButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
             this.getPaidButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.getPaidButton.Location = new System.Drawing.Point(693, 144);
+            this.getPaidButton.Location = new System.Drawing.Point(943, 144);
             this.getPaidButton.Name = "getPaidButton";
             this.getPaidButton.Size = new System.Drawing.Size(163, 40);
             this.getPaidButton.TabIndex = 9;
@@ -117,7 +117,7 @@
             this.completeButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.completeButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
             this.completeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.completeButton.Location = new System.Drawing.Point(693, 98);
+            this.completeButton.Location = new System.Drawing.Point(943, 98);
             this.completeButton.Name = "completeButton";
             this.completeButton.Size = new System.Drawing.Size(163, 40);
             this.completeButton.TabIndex = 8;
@@ -130,7 +130,7 @@
             this.startPreparingButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.startPreparingButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
             this.startPreparingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.startPreparingButton.Location = new System.Drawing.Point(693, 52);
+            this.startPreparingButton.Location = new System.Drawing.Point(943, 52);
             this.startPreparingButton.Name = "startPreparingButton";
             this.startPreparingButton.Size = new System.Drawing.Size(163, 40);
             this.startPreparingButton.TabIndex = 7;
@@ -143,7 +143,7 @@
             this.confirmButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.confirmButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
             this.confirmButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.confirmButton.Location = new System.Drawing.Point(693, 6);
+            this.confirmButton.Location = new System.Drawing.Point(943, 6);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(163, 40);
             this.confirmButton.TabIndex = 6;
@@ -158,9 +158,9 @@
             this.ordersGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.ordersGridView.BackgroundColor = System.Drawing.Color.White;
             this.ordersGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ordersGridView.Location = new System.Drawing.Point(6, 6);
+            this.ordersGridView.Location = new System.Drawing.Point(7, 6);
             this.ordersGridView.Name = "ordersGridView";
-            this.ordersGridView.Size = new System.Drawing.Size(680, 422);
+            this.ordersGridView.Size = new System.Drawing.Size(930, 422);
             this.ordersGridView.TabIndex = 1;
             // 
             // requestsTabPage
@@ -173,7 +173,7 @@
             this.requestsTabPage.Location = new System.Drawing.Point(4, 30);
             this.requestsTabPage.Name = "requestsTabPage";
             this.requestsTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.requestsTabPage.Size = new System.Drawing.Size(862, 434);
+            this.requestsTabPage.Size = new System.Drawing.Size(1112, 434);
             this.requestsTabPage.TabIndex = 1;
             this.requestsTabPage.Text = "Заявки";
             this.requestsTabPage.UseVisualStyleBackColor = true;
@@ -184,7 +184,7 @@
             this.refreshRequestsButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.refreshRequestsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
             this.refreshRequestsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.refreshRequestsButton.Location = new System.Drawing.Point(692, 144);
+            this.refreshRequestsButton.Location = new System.Drawing.Point(942, 144);
             this.refreshRequestsButton.Name = "refreshRequestsButton";
             this.refreshRequestsButton.Size = new System.Drawing.Size(163, 40);
             this.refreshRequestsButton.TabIndex = 11;
@@ -197,7 +197,7 @@
             this.deleteButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.deleteButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
             this.deleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.deleteButton.Location = new System.Drawing.Point(693, 98);
+            this.deleteButton.Location = new System.Drawing.Point(943, 98);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(163, 40);
             this.deleteButton.TabIndex = 3;
@@ -210,7 +210,7 @@
             this.updateButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.updateButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
             this.updateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.updateButton.Location = new System.Drawing.Point(693, 52);
+            this.updateButton.Location = new System.Drawing.Point(943, 52);
             this.updateButton.Name = "updateButton";
             this.updateButton.Size = new System.Drawing.Size(163, 40);
             this.updateButton.TabIndex = 2;
@@ -223,7 +223,7 @@
             this.createButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.createButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
             this.createButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.createButton.Location = new System.Drawing.Point(693, 6);
+            this.createButton.Location = new System.Drawing.Point(943, 6);
             this.createButton.Name = "createButton";
             this.createButton.Size = new System.Drawing.Size(163, 40);
             this.createButton.TabIndex = 1;
@@ -239,9 +239,9 @@
             this.requestsGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.requestsGridView.BackgroundColor = System.Drawing.Color.White;
             this.requestsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.requestsGridView.Location = new System.Drawing.Point(6, 6);
+            this.requestsGridView.Location = new System.Drawing.Point(7, 6);
             this.requestsGridView.Name = "requestsGridView";
-            this.requestsGridView.Size = new System.Drawing.Size(680, 422);
+            this.requestsGridView.Size = new System.Drawing.Size(930, 422);
             this.requestsGridView.TabIndex = 0;
             // 
             // mainMenuStrip
@@ -253,9 +253,9 @@
             this.computersToolStripMenuItem,
             this.componentsToolStripMenuItem,
             this.suppliersToolStripMenuItem,
-            this.warehousesToolStripMenuItem,
             this.newOrderToolStripMenuItem,
-            this.reportsToolStripMenuItem});
+            this.reportsToolStripMenuItem,
+            this.newSupplierToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
             this.mainMenuStrip.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -291,16 +291,6 @@
             this.suppliersToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.suppliersToolStripMenuItem.Click += new System.EventHandler(this.SuppliersToolStripMenuItem_Click);
             // 
-            // warehousesToolStripMenuItem
-            // 
-            this.warehousesToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.warehousesToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.warehousesToolStripMenuItem.Name = "warehousesToolStripMenuItem";
-            this.warehousesToolStripMenuItem.Size = new System.Drawing.Size(135, 25);
-            this.warehousesToolStripMenuItem.Text = "Склады";
-            this.warehousesToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.warehousesToolStripMenuItem.Click += new System.EventHandler(this.WarehousesToolStripMenuItem_Click);
-            // 
             // newOrderToolStripMenuItem
             // 
             this.newOrderToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -313,17 +303,26 @@
             // 
             // reportsToolStripMenuItem
             // 
+            this.reportsToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
             this.reportsToolStripMenuItem.Size = new System.Drawing.Size(135, 25);
             this.reportsToolStripMenuItem.Text = "Отчеты";
             this.reportsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // newSupplierToolStripMenuItem
+            // 
+            this.newSupplierToolStripMenuItem.Name = "newSupplierToolStripMenuItem";
+            this.newSupplierToolStripMenuItem.Size = new System.Drawing.Size(135, 25);
+            this.newSupplierToolStripMenuItem.Text = "Новый пост.";
+            this.newSupplierToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.newSupplierToolStripMenuItem.Click += new System.EventHandler(this.newSupplierToolStripMenuItem_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1034, 492);
+            this.ClientSize = new System.Drawing.Size(1284, 492);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.mainMenuStrip);
             this.Font = new System.Drawing.Font("Segoe UI", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -354,7 +353,6 @@
         private System.Windows.Forms.TabPage requestsTabPage;
         private System.Windows.Forms.MenuStrip mainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem suppliersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem warehousesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem componentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem computersToolStripMenuItem;
         private System.Windows.Forms.Button createButton;
@@ -370,6 +368,7 @@
         private System.Windows.Forms.ToolStripMenuItem newOrderToolStripMenuItem;
         private System.Windows.Forms.Button refreshRequestsButton;
         private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newSupplierToolStripMenuItem;
     }
 }
 

@@ -197,17 +197,17 @@
     <Compile Include="RequestCreationForm.Designer.cs">
       <DependentUpon>RequestCreationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SupplierCreationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupplierCreationForm.Designer.cs">
+      <DependentUpon>SupplierCreationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SuppliersListForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SuppliersListForm.Designer.cs">
       <DependentUpon>SuppliersListForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WarehousesListForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WarehousesListForm.Designer.cs">
-      <DependentUpon>WarehousesListForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="ComponentAddingForm.resx">
       <DependentUpon>ComponentAddingForm.cs</DependentUpon>
@@ -242,11 +242,11 @@
     <EmbeddedResource Include="RequestCreationForm.resx">
       <DependentUpon>RequestCreationForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SupplierCreationForm.resx">
+      <DependentUpon>SupplierCreationForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SuppliersListForm.resx">
       <DependentUpon>SuppliersListForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WarehousesListForm.resx">
-      <DependentUpon>WarehousesListForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

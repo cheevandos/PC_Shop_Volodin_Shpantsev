@@ -152,6 +152,7 @@
             this.Name = "ComponentCreationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Новый компонент";
+            this.Load += new System.EventHandler(this.ComponentCreationForm_Load);
             this.componentNamePanel.ResumeLayout(false);
             this.componentNamePanel.PerformLayout();
             this.componentPricePanel.ResumeLayout(false);

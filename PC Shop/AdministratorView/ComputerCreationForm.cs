@@ -55,6 +55,7 @@ namespace AdministratorView
             }
             else
             {
+                computerPriceTextBox.Text = costOfWork.ToString();
                 computerComponents = new Dictionary<int, (string, int)>();
             }
         }
@@ -80,7 +81,7 @@ namespace AdministratorView
             {
                 MessageBox.Show(
                     ex.Message, 
-                    "Ошибка загрузки данных о ПК",
+                    "Ошибка загрузки комплектующих",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
@@ -98,7 +99,7 @@ namespace AdministratorView
                 })?[0];
                 if (component != null)
                 {
-                    computerPrice += component.Price;
+                    computerPrice += component.Price * computerComponent.Value.Item2;
                 }
             }
             computerPriceTextBox.Text = computerPrice.ToString();
@@ -223,7 +224,6 @@ namespace AdministratorView
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

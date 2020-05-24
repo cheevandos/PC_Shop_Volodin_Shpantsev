@@ -57,6 +57,7 @@
             this.createButton.TabIndex = 2;
             this.createButton.Text = "Создать";
             this.createButton.UseVisualStyleBackColor = false;
+            this.createButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 
             // cancelButton
             // 
@@ -72,6 +73,7 @@
             this.cancelButton.TabIndex = 3;
             this.cancelButton.Text = "Отмена";
             this.cancelButton.UseVisualStyleBackColor = false;
+            this.cancelButton.Click += new System.EventHandler(this.UndoButton_Click);
             // 
             // computerLabel
             // 
@@ -112,6 +114,7 @@
             this.countTextBox.Name = "countTextBox";
             this.countTextBox.Size = new System.Drawing.Size(312, 22);
             this.countTextBox.TabIndex = 1;
+            this.countTextBox.TextChanged += new System.EventHandler(this.CountTextBox_TextChanged);
             // 
             // computerComboBox
             // 
@@ -120,6 +123,7 @@
             this.computerComboBox.Name = "computerComboBox";
             this.computerComboBox.Size = new System.Drawing.Size(332, 27);
             this.computerComboBox.TabIndex = 7;
+            this.computerComboBox.SelectedIndexChanged += new System.EventHandler(this.ComputerComboBox_SelectedIndexChanged);
             // 
             // amountLabel
             // 
@@ -172,6 +176,7 @@
             this.Name = "OrderCreationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Новый заказ";
+            this.Load += new System.EventHandler(this.OrderCreationForm_Load);
             this.countPanel.ResumeLayout(false);
             this.countPanel.PerformLayout();
             this.amountPanel.ResumeLayout(false);
