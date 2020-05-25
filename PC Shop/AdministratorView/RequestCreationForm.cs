@@ -1,8 +1,7 @@
 ﻿using PC_Shop_Business_Logic.Binding_Models;
-using PC_Shop_Business_Logic.Business_Logic;
 using PC_Shop_Business_Logic.View_Models;
 using PC_Shop_Business_Logic.Interfaces;
-using PC_Shop_Database_Implementation.Models;
+using PC_Shop_Business_Logic.Business_Logic;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -15,19 +14,19 @@ namespace AdministratorView
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly IRequestLogic requestLogic;
-        private readonly IComponentLogic componentLogic;
         private readonly ISupplierLogic supplierLogic;
+        private readonly AdminBusinessLogic adminBusinessLogic;
         public int ID { set { Id = value; } }
         private int? Id;
         private Dictionary<int, (string, int)> requestComponents;
 
-        public RequestCreationForm(IRequestLogic requestLogic, 
-            IComponentLogic componentLogic, ISupplierLogic supplierLogic)
+        public RequestCreationForm(AdminBusinessLogic adminBusinessLogic,
+            IRequestLogic requestLogic, ISupplierLogic supplierLogic)
         {
             InitializeComponent();
             this.requestLogic = requestLogic;
-            this.componentLogic = componentLogic;
             this.supplierLogic = supplierLogic;
+            this.adminBusinessLogic = adminBusinessLogic;
         }
 
         private void RequestCreationForm_Load(object sender, EventArgs e)
@@ -201,7 +200,7 @@ namespace AdministratorView
             }
             try
             {
-                requestLogic.CreateOrUpdate(new RequestBindingModel
+                adminBusinessLogic.CreateOrUpdateRequest(new RequestBindingModel
                 {
                     ID = Id,
                     SupplierID = Convert.ToInt32(supplierComboBox.SelectedValue),

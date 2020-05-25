@@ -79,13 +79,15 @@
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DarkGray;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.componentsGridView.DefaultCellStyle = dataGridViewCellStyle1;
             this.componentsGridView.Location = new System.Drawing.Point(12, 156);
+            this.componentsGridView.MultiSelect = false;
             this.componentsGridView.Name = "componentsGridView";
+            this.componentsGridView.ReadOnly = true;
             this.componentsGridView.Size = new System.Drawing.Size(670, 250);
             this.componentsGridView.TabIndex = 10;
             // 

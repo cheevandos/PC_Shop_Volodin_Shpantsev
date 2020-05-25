@@ -2,11 +2,12 @@
 using PC_Shop_Business_Logic.Business_Logic;
 using PC_Shop_Business_Logic.View_Models;
 using PC_Shop_Business_Logic.Interfaces;
-using PC_Shop_Database_Implementation.Models;
+using PC_Shop_Business_Logic.Enums;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Unity;
+using PC_Shop_Database_Implementation.Models;
 
 namespace AdministratorView
 {
@@ -17,6 +18,7 @@ namespace AdministratorView
         private readonly AdminBusinessLogic adminLogic;
         private readonly IOrderLogic orderLogic;
         private readonly IRequestLogic requestLogic;
+
         public MainForm(AdminBusinessLogic adminLogic, IOrderLogic orderLogic, IRequestLogic requestLogic)
         {
             InitializeComponent();
@@ -113,10 +115,185 @@ namespace AdministratorView
             LoadRequests();
         }
 
-        private void newSupplierToolStripMenuItem_Click(object sender, EventArgs e)
+        private void NewSupplierToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<SupplierCreationForm>();
             form.ShowDialog();
+        }
+
+        private void StartPreparingButton_Click(object sender, EventArgs e)
+        {
+            if (ordersGridView.SelectedRows.Count == 1)
+            {
+                int ID = Convert.ToInt32(ordersGridView.SelectedRows[0].Cells[0].Value);
+                try
+                {
+                    adminLogic.StartPreparingAnOrder(new ChangeOrderStatusBindingModel { OrderID = ID });
+                    LoadOrders();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        ex.Message, 
+                        "Ошибка", 
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+            }
+            UpdateButtons();
+        }
+
+        private void CompleteButton_Click(object sender, EventArgs e)
+        {
+            int ID = Convert.ToInt32(ordersGridView.SelectedRows[0].Cells[0].Value);
+            try
+            {
+                adminLogic.CompleteOrder(new ChangeOrderStatusBindingModel { OrderID = ID });
+                LoadOrders();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Ошибка",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            UpdateButtons();
+        }
+
+        private void ConfirmButton_Click(object sender, EventArgs e)
+        {
+            int ID = Convert.ToInt32(ordersGridView.SelectedRows[0].Cells[0].Value);
+            try
+            {
+                adminLogic.ConfirmOrder(new ChangeOrderStatusBindingModel { OrderID = ID });
+                LoadOrders();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Ошибка",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            UpdateButtons();
+        }
+
+        private void GetPaidButton_Click(object sender, EventArgs e)
+        {
+            int ID = Convert.ToInt32(ordersGridView.SelectedRows[0].Cells[0].Value);
+            try
+            {
+                adminLogic.PayOrder(new ChangeOrderStatusBindingModel { OrderID = ID });
+                LoadOrders();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Ошибка",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            UpdateButtons();
+        }
+
+        private void RefreshOrdersButton_Click(object sender, EventArgs e)
+        {
+            LoadOrders();
+            UpdateButtons();
+        }
+
+        private void UpdateButton_Click(object sender, EventArgs e)
+        {
+            int requestID = Convert.ToInt32(requestsGridView.SelectedRows[0].Cells[0].Value);
+            try
+            {
+                adminLogic.CheckRequestStatus(new ChangeRequestStatusBindingModel 
+                { 
+                    RequestID = requestID 
+                });
+                var form = Container.Resolve<RequestCreationForm>();
+                form.ID = requestID;
+                form.ShowDialog();
+                LoadRequests();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Ошибка",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (requestsGridView.SelectedRows.Count == 1)
+            {
+                if (MessageBox.Show(
+                    "Действительно хотите удалить заявку?",
+                    "Требуется подтверждение",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    int requestID = Convert.ToInt32(requestsGridView.SelectedRows[0].Cells[0].Value);
+                    try
+                    {
+                        adminLogic.CheckRequestStatus(new ChangeRequestStatusBindingModel
+                        {
+                            RequestID = requestID
+                        });
+                        adminLogic.DeleteRequest(new RequestBindingModel { ID = requestID });
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(
+                            ex.Message,
+                            "Ошибка",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                    LoadRequests();
+                }
+            }
+        }
+
+        private void RefreshRequestsButton_Click(object sender, EventArgs e)
+        {
+            LoadOrders();
+        }
+
+        private void UpdateButtons()
+        {
+            if (ordersGridView.SelectedRows.Count == 1)
+            {
+                string orderStatus = ordersGridView.SelectedRows[0].Cells[5].Value.ToString();
+                confirmButton.Enabled = (orderStatus == OrderStatus.Создан.ToString()) ? true : false;
+                startPreparingButton.Enabled = (orderStatus == OrderStatus.Подтвержден.ToString()) ? true : false;
+                completeButton.Enabled = (orderStatus == OrderStatus.Подготавливается.ToString()) ? true : false;
+                getPaidButton.Enabled = (orderStatus == OrderStatus.Готов.ToString()) ? true : false;
+            }
+            else
+            {
+                confirmButton.Enabled = false;
+                startPreparingButton.Enabled = false;
+                completeButton.Enabled = false;
+                getPaidButton.Enabled = false;
+            }
+        }
+
+        private void OrdersGridView_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            UpdateButtons();
+        }
+
+        private void OrdersGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            UpdateButtons();
         }
     }
 }

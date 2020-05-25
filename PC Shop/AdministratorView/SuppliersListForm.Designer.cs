@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SuppliersListForm));
             this.suppliersGridView = new System.Windows.Forms.DataGridView();
             this.refreshButton = new System.Windows.Forms.Button();
@@ -40,9 +41,19 @@
             this.suppliersGridView.AllowUserToDeleteRows = false;
             this.suppliersGridView.AllowUserToResizeRows = false;
             this.suppliersGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.suppliersGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.suppliersGridView.BackgroundColor = System.Drawing.Color.White;
             this.suppliersGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DarkGray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.suppliersGridView.DefaultCellStyle = dataGridViewCellStyle1;
             this.suppliersGridView.Location = new System.Drawing.Point(12, 58);
+            this.suppliersGridView.MultiSelect = false;
             this.suppliersGridView.Name = "suppliersGridView";
             this.suppliersGridView.ReadOnly = true;
             this.suppliersGridView.Size = new System.Drawing.Size(670, 200);

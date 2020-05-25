@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.ordersTabPage = new System.Windows.Forms.TabPage();
@@ -94,74 +98,100 @@
             this.refreshOrdersButton.Location = new System.Drawing.Point(943, 190);
             this.refreshOrdersButton.Name = "refreshOrdersButton";
             this.refreshOrdersButton.Size = new System.Drawing.Size(163, 40);
-            this.refreshOrdersButton.TabIndex = 10;
+            this.refreshOrdersButton.TabIndex = 5;
             this.refreshOrdersButton.Text = "Обновить список";
             this.refreshOrdersButton.UseVisualStyleBackColor = false;
+            this.refreshOrdersButton.Click += new System.EventHandler(this.RefreshOrdersButton_Click);
             // 
             // getPaidButton
             // 
             this.getPaidButton.BackColor = System.Drawing.Color.White;
+            this.getPaidButton.Enabled = false;
             this.getPaidButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.getPaidButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
             this.getPaidButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.getPaidButton.Location = new System.Drawing.Point(943, 144);
             this.getPaidButton.Name = "getPaidButton";
             this.getPaidButton.Size = new System.Drawing.Size(163, 40);
-            this.getPaidButton.TabIndex = 9;
+            this.getPaidButton.TabIndex = 4;
             this.getPaidButton.Text = "Оплата получена";
             this.getPaidButton.UseVisualStyleBackColor = false;
+            this.getPaidButton.Click += new System.EventHandler(this.GetPaidButton_Click);
             // 
             // completeButton
             // 
             this.completeButton.BackColor = System.Drawing.Color.White;
+            this.completeButton.Enabled = false;
             this.completeButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.completeButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
             this.completeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.completeButton.Location = new System.Drawing.Point(943, 98);
             this.completeButton.Name = "completeButton";
             this.completeButton.Size = new System.Drawing.Size(163, 40);
-            this.completeButton.TabIndex = 8;
+            this.completeButton.TabIndex = 3;
             this.completeButton.Text = "Заказ готов";
             this.completeButton.UseVisualStyleBackColor = false;
+            this.completeButton.Click += new System.EventHandler(this.CompleteButton_Click);
             // 
             // startPreparingButton
             // 
             this.startPreparingButton.BackColor = System.Drawing.Color.White;
+            this.startPreparingButton.Enabled = false;
             this.startPreparingButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.startPreparingButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
             this.startPreparingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.startPreparingButton.Location = new System.Drawing.Point(943, 52);
             this.startPreparingButton.Name = "startPreparingButton";
             this.startPreparingButton.Size = new System.Drawing.Size(163, 40);
-            this.startPreparingButton.TabIndex = 7;
+            this.startPreparingButton.TabIndex = 2;
             this.startPreparingButton.Text = "В обработку";
             this.startPreparingButton.UseVisualStyleBackColor = false;
+            this.startPreparingButton.Click += new System.EventHandler(this.StartPreparingButton_Click);
             // 
             // confirmButton
             // 
             this.confirmButton.BackColor = System.Drawing.Color.White;
+            this.confirmButton.Enabled = false;
             this.confirmButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.confirmButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
             this.confirmButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.confirmButton.Location = new System.Drawing.Point(943, 6);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(163, 40);
-            this.confirmButton.TabIndex = 6;
+            this.confirmButton.TabIndex = 2;
             this.confirmButton.Text = "Подтвердить";
             this.confirmButton.UseVisualStyleBackColor = false;
+            this.confirmButton.Click += new System.EventHandler(this.ConfirmButton_Click);
             // 
             // ordersGridView
             // 
             this.ordersGridView.AllowUserToAddRows = false;
             this.ordersGridView.AllowUserToDeleteRows = false;
             this.ordersGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DarkGray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.ordersGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.ordersGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.ordersGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.ordersGridView.BackgroundColor = System.Drawing.Color.White;
             this.ordersGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ordersGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.ordersGridView.Location = new System.Drawing.Point(7, 6);
+            this.ordersGridView.MultiSelect = false;
             this.ordersGridView.Name = "ordersGridView";
             this.ordersGridView.Size = new System.Drawing.Size(930, 422);
             this.ordersGridView.TabIndex = 1;
+            this.ordersGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.OrdersGridView_CellMouseClick);
+            this.ordersGridView.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.OrdersGridView_RowHeaderMouseClick);
             // 
             // requestsTabPage
             // 
@@ -187,9 +217,10 @@
             this.refreshRequestsButton.Location = new System.Drawing.Point(942, 144);
             this.refreshRequestsButton.Name = "refreshRequestsButton";
             this.refreshRequestsButton.Size = new System.Drawing.Size(163, 40);
-            this.refreshRequestsButton.TabIndex = 11;
+            this.refreshRequestsButton.TabIndex = 9;
             this.refreshRequestsButton.Text = "Обновить список";
             this.refreshRequestsButton.UseVisualStyleBackColor = false;
+            this.refreshRequestsButton.Click += new System.EventHandler(this.RefreshRequestsButton_Click);
             // 
             // deleteButton
             // 
@@ -200,9 +231,10 @@
             this.deleteButton.Location = new System.Drawing.Point(943, 98);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(163, 40);
-            this.deleteButton.TabIndex = 3;
+            this.deleteButton.TabIndex = 8;
             this.deleteButton.Text = "Удалить";
             this.deleteButton.UseVisualStyleBackColor = false;
+            this.deleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // updateButton
             // 
@@ -213,9 +245,10 @@
             this.updateButton.Location = new System.Drawing.Point(943, 52);
             this.updateButton.Name = "updateButton";
             this.updateButton.Size = new System.Drawing.Size(163, 40);
-            this.updateButton.TabIndex = 2;
+            this.updateButton.TabIndex = 7;
             this.updateButton.Text = "Редактировать";
             this.updateButton.UseVisualStyleBackColor = false;
+            this.updateButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
             // createButton
             // 
@@ -226,7 +259,7 @@
             this.createButton.Location = new System.Drawing.Point(943, 6);
             this.createButton.Name = "createButton";
             this.createButton.Size = new System.Drawing.Size(163, 40);
-            this.createButton.TabIndex = 1;
+            this.createButton.TabIndex = 6;
             this.createButton.Text = "Создать заявку";
             this.createButton.UseVisualStyleBackColor = false;
             this.createButton.Click += new System.EventHandler(this.CreateButton_Click);
@@ -236,11 +269,27 @@
             this.requestsGridView.AllowUserToAddRows = false;
             this.requestsGridView.AllowUserToDeleteRows = false;
             this.requestsGridView.AllowUserToResizeRows = false;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.DarkGray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.requestsGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.requestsGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.requestsGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.requestsGridView.BackgroundColor = System.Drawing.Color.White;
             this.requestsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.DarkGray;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.requestsGridView.DefaultCellStyle = dataGridViewCellStyle4;
             this.requestsGridView.Location = new System.Drawing.Point(7, 6);
+            this.requestsGridView.MultiSelect = false;
             this.requestsGridView.Name = "requestsGridView";
+            this.requestsGridView.ReadOnly = true;
             this.requestsGridView.Size = new System.Drawing.Size(930, 422);
             this.requestsGridView.TabIndex = 0;
             // 
@@ -315,7 +364,7 @@
             this.newSupplierToolStripMenuItem.Size = new System.Drawing.Size(135, 25);
             this.newSupplierToolStripMenuItem.Text = "Новый пост.";
             this.newSupplierToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.newSupplierToolStripMenuItem.Click += new System.EventHandler(this.newSupplierToolStripMenuItem_Click);
+            this.newSupplierToolStripMenuItem.Click += new System.EventHandler(this.NewSupplierToolStripMenuItem_Click);
             // 
             // MainForm
             // 
