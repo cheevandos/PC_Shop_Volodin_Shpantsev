@@ -99,7 +99,7 @@ namespace PC_Shop_Business_Logic.Business_Logic
                 Count = order.Count,
                 Amount = order.Amount,
                 CreationDate = order.CreationDate,
-                CompletionDate = order.CompletionDate,
+                CompletionDate = DateTime.Now,
                 Status = OrderStatus.Готов
             });
         }
@@ -130,14 +130,40 @@ namespace PC_Shop_Business_Logic.Business_Logic
             });
         }
 
-        public void CreateRequest(CreateRequestBindingModel model)
+        public void CreateOrUpdateRequest(RequestBindingModel model)
         {
             requestLogic.CreateOrUpdate(new RequestBindingModel
             {
+                ID = model.ID,
                 SupplierID = model.SupplierID,
                 Status = RequestStatus.Создана,
                 Components = model.Components
             });
+        }
+
+        public void DeleteRequest(RequestBindingModel model)
+        {
+            requestLogic.Delete(new RequestBindingModel
+            {
+                ID = model.ID
+            });
+        }
+
+        public void CheckRequestStatus(ChangeRequestStatusBindingModel model)
+        {
+            var request = requestLogic.Read(new RequestBindingModel
+            {
+                ID = model.RequestID
+            })?[0];
+            if (request == null)
+            {
+                throw new Exception("Заявка не найдена");
+            }
+            if (request.Status != RequestStatus.Создана)
+            {
+                throw new Exception("Невозможно изменить заявку." +
+                    " Заявка исполнена или находится в обработке");
+            }
         }
     }
 }
