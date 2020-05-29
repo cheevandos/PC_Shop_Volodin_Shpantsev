@@ -1,0 +1,36 @@
+﻿@model IEnumerable<PC_Shop_Business_Logic.View_Models.RequestViewModel>
+
+@{
+    ViewData["Title"] = "Аккаунт";
+}
+
+<h1>Список заявок</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.ID">Просмотр заявки</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
