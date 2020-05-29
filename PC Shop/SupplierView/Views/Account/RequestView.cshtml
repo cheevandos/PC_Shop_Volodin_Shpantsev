@@ -1,0 +1,36 @@
+﻿@model Dictionary<int, (string, int)>
+@{
+    ViewData["Title"] = "Request";
+}
+
+<h1>Заявка № @ViewBag.RequestID</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Комплектующее
+            </th>
+            <th>
+                Количество
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value.Item1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value.Item2)
+                </td>
+                <td>
+                    <a asp-action="" asp-route-id="@item.Key">Зарезервировать</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

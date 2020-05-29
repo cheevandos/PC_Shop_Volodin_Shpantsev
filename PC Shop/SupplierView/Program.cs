@@ -13,6 +13,7 @@ namespace SupplierView
     public class Program
     {
         public static SupplierViewModel supplier;
+        public static List<RequestViewModel> requests;
 
         public static void Main(string[] args)
         {

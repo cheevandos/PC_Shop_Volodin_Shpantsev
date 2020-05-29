@@ -28,6 +28,7 @@ namespace SupplierView
             services.AddControllersWithViews();
             services.AddTransient<ISupplierLogic, SupplierLogic>();
             services.AddTransient<IRequestLogic, RequestLogic>();
+            services.AddTransient<IComponentLogic, ComponentLogic>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
