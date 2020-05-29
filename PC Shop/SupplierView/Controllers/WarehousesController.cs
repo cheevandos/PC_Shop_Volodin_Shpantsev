@@ -9,6 +9,7 @@ using PC_Shop_Business_Logic.Interfaces;
 using PC_Shop_Database_Implementation;
 using PC_Shop_Database_Implementation.Models;
 using PC_Shop_Business_Logic.Binding_Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace SupplierView.Controllers
 {
@@ -71,13 +72,20 @@ namespace SupplierView.Controllers
             }
             if (ModelState.IsValid)
             {
-                warehouseLogic.CreateOrUpdate(new WarehouseBindingModel
+                try
                 {
-                    Name = warehouse.Name,
-                    Capacity = warehouse.Capacity,
-                    SupplierID = Program.Supplier.ID
-                });
-                return RedirectToAction(nameof(List));
+                    warehouseLogic.CreateOrUpdate(new WarehouseBindingModel
+                    {
+                        Name = warehouse.Name,
+                        Capacity = warehouse.Capacity,
+                        SupplierID = Program.Supplier.ID
+                    });
+                    return RedirectToAction(nameof(List));
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                }
             }
             return View(warehouse);
         }
@@ -161,12 +169,17 @@ namespace SupplierView.Controllers
             var warehouse = warehouseLogic.Read(new WarehouseBindingModel
             {
                 ID = id
-            });
+            })?[0];
             if (warehouse == null)
             {
                 return NotFound();
             }
-            return View(warehouse);
+            return View(new Warehouse
+            {
+                ID = id.Value,
+                Name = warehouse.Name,
+                Capacity = warehouse.Capacity
+            });
         }
 
         [HttpPost, ActionName("Delete")]

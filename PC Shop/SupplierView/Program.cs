@@ -13,8 +13,6 @@ namespace SupplierView
     public class Program
     {
         public static SupplierViewModel Supplier { get; set; }
-        //public static List<RequestViewModel> Requests { get; set; }
-        //public static List<WarehouseViewModel> Warehouses { get; set; }
 
         public static void Main(string[] args)
         {
