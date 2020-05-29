@@ -120,7 +120,8 @@ namespace PC_Shop_Database_Implementation.Implenetations
             {
                 return context.Requests
                     .Include(rec => rec.Supplier)
-                    .Where(rec => model == null || rec.ID == model.ID)
+                    .Where(rec => model == null || rec.ID == model.ID
+                    || rec.SupplierID == model.SupplierID)
                     .ToList()
                     .Select(rec => new RequestViewModel
                     {

@@ -6,6 +6,7 @@ namespace PC_Shop_Business_Logic.View_Models
 {
     public class RequestViewModel
     {
+        [DisplayName("Номер заявки")]
         public int ID { get; set; }
         public int SupplierID { get; set; }
         [DisplayName("Поставщик")]
