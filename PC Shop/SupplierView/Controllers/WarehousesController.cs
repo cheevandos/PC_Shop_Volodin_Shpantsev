@@ -45,11 +45,11 @@ namespace SupplierView.Controllers
             {
                 return NotFound();
             }
-            ViewBag.Warehouse = id;
+            ViewBag.WarehouseID = id;
             var components = warehouseLogic.Read(new WarehouseBindingModel
             {
                 ID = id
-            });
+            })?[0].Components;
             return View(components);
         }
 
