@@ -34,6 +34,7 @@ namespace PC_Shop_Database_Implementation.Implenetations
                     warehouse = new Warehouse();
                     context.Warehouses.Add(warehouse);
                 }
+                warehouse.SupplierID = model.SupplierID;
                 warehouse.Name = model.Name;
                 warehouse.Capacity = model.Capacity;
                 context.SaveChanges();
@@ -76,7 +77,8 @@ namespace PC_Shop_Database_Implementation.Implenetations
             using (var context = new PCShopDatabase())
             {
                 return context.Warehouses
-                    .Where(rec => model == null || rec.ID == model.ID)
+                    .Where(rec => model == null || rec.ID == model.ID
+                    || rec.SupplierID == model.SupplierID)
                     .ToList()
                     .Select(rec => new WarehouseViewModel
                     {

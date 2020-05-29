@@ -46,7 +46,7 @@ namespace SupplierView.Controllers
                 ModelState.AddModelError("", "Неверный логин или пароль");
                 return View(supplier);
             }
-            Program.supplier = supplierView;
+            Program.Supplier = supplierView;
             return RedirectToAction("Main", "Account");
         }
 

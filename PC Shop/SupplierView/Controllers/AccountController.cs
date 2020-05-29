@@ -13,35 +13,36 @@ namespace SupplierView.Controllers
     public class AccountController : Controller
     {
         private readonly IRequestLogic requestLogic;
-        private readonly IComponentLogic componentLogic;
 
-        public AccountController(IRequestLogic requestLogic, IComponentLogic componentLogic)
+        public AccountController(IRequestLogic requestLogic)
         {
             this.requestLogic = requestLogic;
-            this.componentLogic = componentLogic;
         }
 
         public IActionResult Main()
         {
-            if (Program.supplier == null)
+            if (Program.Supplier == null)
             {
                 return new UnauthorizedResult();
             }
-            Program.requests = requestLogic.Read(new RequestBindingModel
+            var requests = requestLogic.Read(new RequestBindingModel
             {
-                SupplierID = Program.supplier.ID
+                SupplierID = Program.Supplier.ID
             });
-            return View(Program.requests);
+            return View(requests);
         }
 
         public IActionResult RequestView(int id)
         {
-            if (Program.requests == null)
+            if (Program.Supplier == null)
             {
-                return View("Main");
+                return new UnauthorizedResult();
             }
             ViewBag.RequestID = id;
-            var components = Program.requests.FirstOrDefault(rec => rec.ID == id).Components;
+            var components = requestLogic.Read(new RequestBindingModel
+            {
+                SupplierID = Program.Supplier.ID
+            })?[0].Components;
             return View(components);
         }
     }
