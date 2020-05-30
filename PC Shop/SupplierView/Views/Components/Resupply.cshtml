@@ -4,10 +4,18 @@
     ViewData["Title"] = "Пополнение";
 }
 
-<h1>Пополнение склада №@ViewBag.warehouseID</h1>
+<div class="text-center">
+    <h1 class="display-4">Пополнение склада №@ViewBag.warehouseID</h1>
+</div>
 
-<h4>@ViewBag.componentName</h4>
 <hr />
+
+<div class="text-left">
+    <h3>@ViewBag.componentName</h3>
+</div>
+
+<hr/>
+
 <div class="row">
     <div class="col-md-4">
         <form asp-controller="Warehouses" asp-action="Resupply">
@@ -26,7 +34,9 @@
     </div>
 </div>
 
+<hr/>
+
 <div>
-    <a asp-action="List" asp-route-warehouseID="@ViewBag.warehouseID">Вернуться к списку комплектующих</a>
+    <a class="btn btn-outline-secondary" asp-action="List" asp-route-warehouseID="@ViewBag.warehouseID">Вернуться к списку комплектующих</a>
 </div>
 

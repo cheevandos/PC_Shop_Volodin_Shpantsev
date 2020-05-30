@@ -4,12 +4,20 @@
     ViewData["Title"] = "Компоненты";
 }
 
-<h1>Пополнение склада №@ViewBag.warehouseID</h1>
+<div class="text-center">
+    <h1 class="display-4">Пополнение склада №@ViewBag.warehouseID</h1>
+</div>
 
-<h2>Список компонентов для пополнения</h2>
+<hr />
 
-<table class="table">
-    <thead>
+<div>
+    <a class="btn btn-outline-secondary" asp-controller="Warehouses" asp-action="Details" asp-route-id="@ViewBag.warehouseID">Вернуться к списку складов</a>
+</div>
+
+<hr />
+
+<table class="table table-hover table-bordered">
+    <thead class="thead thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -21,18 +29,21 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                <a asp-action="Resupply" asp-route-componentID="@item.ID" asp-route-warehouseID="@ViewBag.warehouseID">Пополнить</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <a class="btn btn-outline-success btn-sm" asp-action="Resupply" asp-route-componentID="@item.ID" asp-route-warehouseID="@ViewBag.warehouseID">Пополнить</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+

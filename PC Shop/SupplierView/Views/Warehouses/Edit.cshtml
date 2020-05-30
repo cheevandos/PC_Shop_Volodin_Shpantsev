@@ -14,10 +14,12 @@
     </div>
 }
 
-<h1>Редактирование параметров склада</h1>
+<div class="text-center">
+    <h1 class="display-4">Редактирование склада №@Model.ID</h1>
+</div>
 
-<h4>Склад №@Model.ID</h4>
 <hr />
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
@@ -40,7 +42,9 @@
     </div>
 </div>
 
+<hr />
+
 <div>
-    <a asp-action="List">Вернуться к списку складов</a>
+    <a class="btn btn-outline-secondary" asp-action="List">Вернуться к списку складов</a>
 </div>
 

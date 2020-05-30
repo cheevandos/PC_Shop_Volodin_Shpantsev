@@ -1,6 +1,6 @@
 ﻿@model Dictionary<int, (string, int)>
 @{
-    ViewData["Title"] = "Request";
+    ViewData["Title"] = "Заявка";
 }
 
 @section Links {
@@ -9,14 +9,25 @@
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Main">Заявки</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Warehouses" asp-action="List">Склады</a>
+            </li>
         </ul>
     </div>
 }
 
-<h2>Заявка № @ViewBag.RequestID</h2>
+<div class="text-center">
+    <h1 class="display-4">Заявка № @ViewBag.RequestID</h1>
+</div>
 
-<table class="table">
-    <thead>
+<div class="text-left">
+    <h3>Поставщик: @Program.Supplier.FullName</h3>
+</div>
+
+<hr />
+
+<table class="table table-hover table-bordered">
+    <thead class="thead thead-dark">
         <tr>
             <th>
                 Комплектующее
@@ -38,7 +49,7 @@
                     @Html.DisplayFor(modelItem => item.Value.Item2)
                 </td>
                 <td>
-                    <a asp-action="" asp-route-id="@item.Key">Зарезервировать</a>
+                    <a class="btn btn-outline-success btn-sm" asp-action="" asp-route-id="@item.Key">Зарезервировать</a>
                 </td>
             </tr>
         }

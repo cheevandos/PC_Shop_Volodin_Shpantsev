@@ -17,16 +17,21 @@
     </div>
 }
 
-<h1>Список компонентов</h1>
+<div class="text-center">
+    <h1 class="display-4">Склад №@ViewBag.WarehouseID</h1>
+</div>
 
-<h2>Склад №@ViewBag.WarehouseID</h2>
+<hr />
 
 <p>
-    <a asp-controller="Components" asp-action="List" asp-route-warehouseID="@ViewBag.WarehouseID">Пополнить склад</a>
+    <a class="btn btn-outline-secondary" asp-action="List">Вернуться к списку складов</a>
+    <a class="btn btn-success" asp-controller="Components" asp-action="List" asp-route-warehouseID="@ViewBag.WarehouseID">Пополнить склад</a>
 </p>
 
-<table class="table">
-    <thead>
+<hr />
+
+<table class="table table-hover table-bordered">
+    <thead class="thead thead-dark">
         <tr>
             <th>
                 Комплектующее
@@ -56,7 +61,3 @@
         }
     </tbody>
 </table>
-
-<div>
-    <a asp-action="List">Вернуться к списку складов</a>
-</div>

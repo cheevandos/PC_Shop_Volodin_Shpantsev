@@ -4,13 +4,34 @@
     ViewData["Title"] = "Склады";
 }
 
-<h2>Список складов</h2>
+@section Links {
+    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Main">Заявки</a>
+            </li>
+        </ul>
+    </div>
+}
+
+<div class="text-center">
+    <h1 class="display-4">Список складов</h1>
+</div>
+
+<div class="text-left">
+    <h3>Поставщик: @Program.Supplier.FullName</h3>
+</div>
+
+<hr />
 
 <p>
-    <a asp-action="Create">Новый склад</a>
+    <a class="btn btn-success" asp-action="Create">Новый склад</a>
 </p>
-<table class="table">
-    <thead>
+
+<hr />
+
+<table class="table table-hover table-bordered">
+    <thead class="thead thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.ID)
@@ -25,23 +46,24 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Capacity)
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.ID" asp-r> Просмотр содержимого </a>|
-                <a asp-action="Edit" asp-route-id="@item.ID"> Изменить </a>|
-                <a asp-action="Delete" asp-route-id="@item.ID"> Удалить </a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Capacity)
+                </td>
+                <td>
+                    <a class="btn btn-outline-info btn-sm" asp-action="Details" asp-route-id="@item.ID" asp-r> Просмотр содержимого </a>
+                    <a class="btn btn-outline-primary btn-sm" asp-action="Edit" asp-route-id="@item.ID"> Изменить </a>
+                    <a class="btn btn-outline-danger btn-sm" asp-action="Delete" asp-route-id="@item.ID"> Удалить </a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

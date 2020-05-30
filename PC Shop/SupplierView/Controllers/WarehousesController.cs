@@ -217,7 +217,7 @@ namespace SupplierView.Controllers
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", ex.Message);
+                    TempData["WarehouseSizeError"] = ex.Message;
                     return RedirectToAction("Resupply", "Components", new
                     {
                         componentID = model.ComponentID,

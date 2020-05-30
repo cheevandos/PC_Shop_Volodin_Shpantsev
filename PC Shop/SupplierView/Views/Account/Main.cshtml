@@ -14,10 +14,20 @@
     </div>
 }
 
-<h2>Список заявок</h2>
+<div class="text-center">
+    <h1 class="display-4">Список заявок</h1>
+</div>
 
-<table class="table">
-    <thead>
+<hr />
+
+<div class="text-left">
+    <h3>Поставщик: @Program.Supplier.FullName</h3>
+</div>
+
+<hr/>
+
+<table class="table table-hover table-bordered">
+    <thead class="thead thead-dark">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.ID)
@@ -39,7 +49,7 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                    <a asp-action="RequestView" asp-route-id="@item.ID">Просмотр заявки</a>
+                    <a class="btn btn-outline-info btn-sm" asp-action="RequestView" asp-route-id="@item.ID">Просмотр заявки</a>
                 </td>
             </tr>
         }
