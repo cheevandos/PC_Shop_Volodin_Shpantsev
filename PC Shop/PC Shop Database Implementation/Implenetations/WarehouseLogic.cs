@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using PC_Shop_Business_Logic.Binding_Models;
 using PC_Shop_Business_Logic.Interfaces;
 using PC_Shop_Business_Logic.View_Models;
@@ -24,6 +25,14 @@ namespace PC_Shop_Database_Implementation.Implenetations
                 if (model.ID.HasValue)
                 {
                     warehouse = context.Warehouses.FirstOrDefault(rec => rec.ID == model.ID);
+                    int countFree = context.WarehouseComponents.Where(rec =>
+                    rec.WarehouseID == model.ID).Sum(rec => rec.Free);
+                    int countReserved = context.WarehouseComponents.Where(rec =>
+                    rec.WarehouseID == model.ID).Sum(rec => rec.Reserved);
+                    if ((countFree + countReserved) > model.Capacity)
+                    {
+                        throw new Exception("Новая вместимость меньше количества комплектующих на складе");
+                    }
                     if (warehouse == null)
                     {
                         throw new Exception("Склад не найден");
@@ -92,6 +101,65 @@ namespace PC_Shop_Database_Implementation.Implenetations
                             (recCC.Component?.Name, recCC.Free, recCC.Reserved))
                     })
                     .ToList();
+            }
+        }
+
+        public void Resupply(UpdateComponentsBindingModel model)
+        {
+            using (var context = new PCShopDatabase())
+            {
+                var warehouseComponents = context.WarehouseComponents.FirstOrDefault(rec =>
+                rec.WarehouseID == model.WarehouseID && rec.ComponentID == model.ComponentID);
+                var warehouse = context.Warehouses.FirstOrDefault(rec => rec.ID == model.WarehouseID);
+                int countFree = context.WarehouseComponents.Where(rec =>
+                rec.WarehouseID == model.WarehouseID).Sum(rec => rec.Free);
+                int countReserved = context.WarehouseComponents.Where(rec =>
+                rec.WarehouseID == model.WarehouseID).Sum(rec => rec.Reserved);
+                if ((countFree + countReserved + model.Count) > warehouse.Capacity)
+                {
+                    throw new Exception("Недостаточно места на складе");
+                }   
+                if (warehouseComponents == null)
+                {
+                    context.WarehouseComponents.Add(new WarehouseComponent
+                    {
+                        WarehouseID = model.WarehouseID,
+                        ComponentID = model.ComponentID,
+                        Free = model.Count,
+                        Reserved = 0
+                    });
+                } 
+                else
+                {
+                    warehouseComponents.Free += model.Count;
+                }
+                context.SaveChanges();
+            }
+        }
+
+        public void Reserve(UpdateComponentsBindingModel model)
+        {
+            using (var context = new PCShopDatabase())
+            {
+                var warehouseComponents = context.WarehouseComponents.FirstOrDefault(rec =>
+                rec.WarehouseID == model.WarehouseID && rec.ComponentID == model.ComponentID);
+                if (warehouseComponents != null)
+                {
+                    if (warehouseComponents.Free >= model.Count)
+                    {
+                        warehouseComponents.Free -= model.Count;
+                        warehouseComponents.Reserved += model.Count;
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        throw new Exception("Недостаточно комплектующих для резервирования");
+                    }
+                }
+                else
+                {
+                    throw new Exception("На складе нет таких комплектующих");
+                }
             }
         }
     }

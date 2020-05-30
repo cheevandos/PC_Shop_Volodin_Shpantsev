@@ -1,0 +1,32 @@
+﻿@model PC_Shop_Business_Logic.Binding_Models.UpdateComponentsBindingModel
+
+@{
+    ViewData["Title"] = "Пополнение";
+}
+
+<h1>Пополнение склада №@ViewBag.warehouseID</h1>
+
+<h4>@ViewBag.componentName</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Warehouses" asp-action="Resupply">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="WarehouseID" />
+            <input type="hidden" asp-for="ComponentID" />
+            <div class="form-group">
+                <label asp-for="Count" class="control-label">Количество</label>
+                <input asp-for="Count" class="form-control" />
+                <span asp-validation-for="Count" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Пополнить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="List" asp-route-warehouseID="@ViewBag.warehouseID">Вернуться к списку комплектующих</a>
+</div>
+

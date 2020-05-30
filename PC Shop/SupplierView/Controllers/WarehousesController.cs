@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using PC_Shop_Business_Logic.Interfaces;
-using PC_Shop_Database_Implementation;
-using PC_Shop_Database_Implementation.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 using PC_Shop_Business_Logic.Binding_Models;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using PC_Shop_Business_Logic.Interfaces;
+using PC_Shop_Database_Implementation.Models;
+using System;
 
 namespace SupplierView.Controllers
 {
     public class WarehousesController : Controller
     {
         private readonly IWarehouseLogic warehouseLogic;
+        private readonly IComponentLogic componentLogic;
 
-        public WarehousesController(IWarehouseLogic warehouseLogic)
+        public WarehousesController(IWarehouseLogic warehouseLogic, IComponentLogic componentLogic)
         {
             this.warehouseLogic = warehouseLogic;
+            this.componentLogic = componentLogic;
         }
 
         public IActionResult List()
@@ -140,7 +135,7 @@ namespace SupplierView.Controllers
                         SupplierID = Program.Supplier.ID
                     });
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     if (!WarehouseExists(warehouse.ID))
                     {
@@ -148,7 +143,8 @@ namespace SupplierView.Controllers
                     }
                     else
                     {
-                        throw;
+                        ModelState.AddModelError("", ex.Message);
+                        return View(warehouse);
                     }
                 }
                 return RedirectToAction(nameof(List));
@@ -203,6 +199,33 @@ namespace SupplierView.Controllers
             {
                 ID = id
             }).Count == 1;
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Resupply([Bind("WarehouseID, ComponentID, Count")] UpdateComponentsBindingModel model)
+        {
+            if (Program.Supplier == null)
+            {
+                return new UnauthorizedResult();
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    warehouseLogic.Resupply(model);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                    return RedirectToAction("Resupply", "Components", new
+                    {
+                        componentID = model.ComponentID,
+                        warehouseID = model.WarehouseID
+                    });
+                }
+            }
+            return RedirectToAction("Details", new { id = model.WarehouseID });
         }
     }
 }

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using PC_Shop_Business_Logic.Binding_Models;
 using PC_Shop_Business_Logic.Interfaces;
 using PC_Shop_Database_Implementation.Models;
-using PC_Shop_Business_Logic.Binding_Models;
-using System.Security.Policy;
 using SupplierView.Models;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
+using System.Linq;
 
 namespace SupplierView.Controllers
 {

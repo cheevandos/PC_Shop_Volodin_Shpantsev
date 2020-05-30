@@ -19,6 +19,12 @@
 
 <h1>Список компонентов</h1>
 
+<h2>Склад №@ViewBag.WarehouseID</h2>
+
+<p>
+    <a asp-controller="Components" asp-action="List" asp-route-warehouseID="@ViewBag.WarehouseID">Пополнить склад</a>
+</p>
+
 <table class="table">
     <thead>
         <tr>
