@@ -31,15 +31,15 @@
 <hr />
 
 <table class="table table-hover table-bordered">
-    <thead class="thead thead-dark">
+    <thead class="thead thead-light">
         <tr>
             <th>
                 Комплектующее
             </th>
-            <th>
+            <th class="text-center">
                 Свободно
             </th>
-            <th>
+            <th class="text-center">
                 Зарезервировано
             </th>
         </tr>
@@ -51,10 +51,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Value.Item1)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Value.Item2)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Value.Item3)
                 </td>
             </tr>

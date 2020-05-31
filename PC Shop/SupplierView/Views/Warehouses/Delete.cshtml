@@ -8,34 +8,49 @@
     <h1 class="display-4">Удаление склада</h1>
 </div>
 
-<div class="text-left">
-    <h3>Действительно удалить склад? (при удалении удалятся все компоненты)</h3>
+<div class="text-center">
+    <h3>Действительно хотите удалить склад?</h3>
 </div>
 
 <hr />
 
 <div>
-    <h4>Склад №@Model.ID</h4>
+    <h4 class="text-center">Склад №@Model.ID</h4>
     <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Capacity)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Capacity)
-        </dd>
-    </dl>
 
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="ID" />
-        <input type="submit" value="Удалить" class="btn btn-danger" />
-    </form>
+    <div class="container">
+        <div class="row justify-content-center">
+            <table class="table col-6 table-bordered">
+                <thead class="thead thead-light">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th class="text-center">
+                            @Html.DisplayNameFor(model => model.Capacity)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => model.Name)
+                        </td>
+                        <td class="text-center">
+                            @Html.DisplayFor(model => model.Capacity)
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="ID" />
+            <input type="submit" value="Удалить" class="btn btn-danger" />
+        </form>
+    </div>
 </div>
 
 <hr />

@@ -20,19 +20,15 @@
     <h1 class="display-4">Заявка № @ViewBag.RequestID</h1>
 </div>
 
-<div class="text-left">
-    <h3>Поставщик: @Program.Supplier.FullName</h3>
-</div>
-
 <hr />
 
 <table class="table table-hover table-bordered">
-    <thead class="thead thead-dark">
+    <thead class="thead thead-light">
         <tr>
             <th>
                 Комплектующее
             </th>
-            <th>
+            <th class="text-center">
                 Количество
             </th>
             <th></th>
@@ -45,10 +41,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Value.Item1)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Value.Item2)
                 </td>
-                <td>
+                <td class="text-center">
                     <a class="btn btn-outline-success btn-sm" asp-action="" asp-route-id="@item.Key">Зарезервировать</a>
                 </td>
             </tr>

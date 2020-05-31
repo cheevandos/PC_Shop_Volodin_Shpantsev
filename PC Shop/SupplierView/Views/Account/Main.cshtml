@@ -27,12 +27,12 @@
 <hr/>
 
 <table class="table table-hover table-bordered">
-    <thead class="thead thead-dark">
+    <thead class="thead thead-light">
         <tr>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.ID)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th></th>
@@ -42,10 +42,10 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.ID)
                 </td>
-                <td>
+                <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
