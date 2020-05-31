@@ -1,4 +1,4 @@
-﻿@model PC_Shop_Business_Logic.Binding_Models.UpdateComponentsBindingModel
+﻿@model PC_Shop_Business_Logic.Binding_Models.WarehouseComponentsBindingModel
 
 @{
     ViewData["Title"] = "Пополнение";
@@ -39,6 +39,8 @@
 <hr/>
 
 <div>
-    <a class="btn btn-outline-secondary" asp-action="List" asp-route-warehouseID="@ViewBag.warehouseID">Вернуться к списку комплектующих</a>
+    <a class="btn btn-outline-secondary" asp-action="List" 
+       asp-route-warehouseID="@ViewBag.warehouseID">
+    Вернуться к списку комплектующих</a>
 </div>
 

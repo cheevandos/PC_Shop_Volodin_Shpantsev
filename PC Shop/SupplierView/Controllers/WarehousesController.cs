@@ -203,7 +203,7 @@ namespace SupplierView.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Resupply([Bind("WarehouseID, ComponentID, Count")] UpdateComponentsBindingModel model)
+        public IActionResult Resupply([Bind("WarehouseID, ComponentID, Count")] WarehouseComponentsBindingModel model)
         {
             if (Program.Supplier == null)
             {
@@ -226,6 +226,29 @@ namespace SupplierView.Controllers
                 }
             }
             return RedirectToAction("Details", new { id = model.WarehouseID });
+        }
+
+        public IActionResult Reserve(int warehouseID, int componentID, int count, int requestID)
+        {
+            if (Program.Supplier == null)
+            {
+                return new UnauthorizedResult();
+            }
+            try
+            {
+                warehouseLogic.Reserve(new WarehouseComponentsBindingModel
+                {
+                    WarehouseID = warehouseID,
+                    ComponentID = componentID,
+                    Count = count
+                });
+            }
+            catch (Exception ex)
+            {
+                TempData["ReserveError"] = ex.Message;
+                return RedirectToAction("RequestView", "Account", new { id = requestID });
+            }
+            return RedirectToAction("RequestView", "Account", new { id = requestID });
         }
     }
 }

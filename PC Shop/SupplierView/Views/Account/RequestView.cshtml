@@ -45,7 +45,10 @@
                     @Html.DisplayFor(modelItem => item.Value.Item2)
                 </td>
                 <td class="text-center">
-                    <a class="btn btn-outline-success btn-sm" asp-action="" asp-route-id="@item.Key">Зарезервировать</a>
+                    <a class="btn btn-outline-success btn-sm" asp-action="ListAvailable" 
+                       asp-route-id="@item.Key" asp-route-name="@item.Value.Item1"
+                       asp-route-count="@item.Value.Item2" asp-route-requestID="@ViewBag.RequestID">
+                    Зарезервировать</a>
                 </td>
             </tr>
         }

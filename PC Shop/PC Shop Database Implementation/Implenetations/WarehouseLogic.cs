@@ -104,7 +104,7 @@ namespace PC_Shop_Database_Implementation.Implenetations
             }
         }
 
-        public void Resupply(UpdateComponentsBindingModel model)
+        public void Resupply(WarehouseComponentsBindingModel model)
         {
             using (var context = new PCShopDatabase())
             {
@@ -137,7 +137,7 @@ namespace PC_Shop_Database_Implementation.Implenetations
             }
         }
 
-        public void Reserve(UpdateComponentsBindingModel model)
+        public void Reserve(WarehouseComponentsBindingModel model)
         {
             using (var context = new PCShopDatabase())
             {
@@ -160,6 +160,24 @@ namespace PC_Shop_Database_Implementation.Implenetations
                 {
                     throw new Exception("На складе нет таких комплектующих");
                 }
+            }
+        }
+
+        public List<AvailableViewModel> GetAvailable(WarehouseComponentsBindingModel model)
+        {
+            using (var context = new PCShopDatabase())
+            {
+                return context.WarehouseComponents
+                .Include(rec => rec.Warehouse)
+                .Where(rec => rec.ComponentID == model.ComponentID
+                && rec.Free >= model.Count)
+                .Select(rec => new AvailableViewModel
+                {
+                    WarehouseID = rec.WarehouseID,
+                    WarehouseName = rec.Warehouse.Name,
+                    Count = rec.Free
+                })
+                .ToList();
             }
         }
     }
