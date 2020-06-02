@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PC_Shop_Business_Logic.Business_Logic;
 using PC_Shop_Business_Logic.Interfaces;
 using PC_Shop_Database_Implementation.Implenetations;
 
@@ -30,6 +26,7 @@ namespace SupplierView
             services.AddTransient<IRequestLogic, RequestLogic>();
             services.AddTransient<IComponentLogic, ComponentLogic>();
             services.AddTransient<IWarehouseLogic, WarehouseLogic>();
+            services.AddTransient<SupplierBusinessLogic>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -28,24 +28,17 @@ namespace PC_Shop_Database_Implementation.Implenetations
                             {
                                 throw new Exception("Заявка не найдена");
                             }
-                            else if (model.Status == RequestStatus.Создана)
+                            var requestComponents = context.RequestComponents
+                                .Where(rec => rec.RequestID == model.ID.Value).ToList();
+                            context.RequestComponents.RemoveRange(requestComponents.Where(rec =>
+                                !model.Components.ContainsKey(rec.ComponentID)).ToList());
+                            foreach (var updComponent in requestComponents)
                             {
-                                var requestComponents = context.RequestComponents
-                                    .Where(rec => rec.RequestID == model.ID.Value).ToList();
-                                context.RequestComponents.RemoveRange(requestComponents.Where(rec =>
-                                    !model.Components.ContainsKey(rec.ComponentID)).ToList());
-                                foreach (var updComponent in requestComponents)
-                                {
-                                    updComponent.Count = model.Components[updComponent.ComponentID].Item2;
-                                    model.Components.Remove(updComponent.ComponentID);
-                                }
-                                context.SaveChanges();
+                                updComponent.Count = model.Components[updComponent.ComponentID].Item2;
+                                updComponent.InReserve = model.Components[updComponent.ComponentID].Item3;
+                                model.Components.Remove(updComponent.ComponentID);
                             }
-                            else
-                            {
-                                throw new Exception("Невозможно изменить заявку. " +
-                                    "Заявка уже в обработке или исполнена");
-                            }
+                            context.SaveChanges();
                         }
                         else
                         {
@@ -61,7 +54,8 @@ namespace PC_Shop_Database_Implementation.Implenetations
                             {
                                 RequestID = request.ID,
                                 ComponentID = component.Key,
-                                Count = component.Value.Item2
+                                Count = component.Value.Item2,
+                                InReserve = false
                             });
                             context.SaveChanges();
                         }
@@ -127,14 +121,30 @@ namespace PC_Shop_Database_Implementation.Implenetations
                     {
                         ID = rec.ID,
                         SupplierLogin = rec.Supplier.Login,
+                        SupplierID = rec.SupplierID,
                         Status = rec.Status,
                         Components = context.RequestComponents
                             .Include(recRC => recRC.Component)
                             .Where(recRC => recRC.RequestID == rec.ID)
                             .ToDictionary(recRC => recRC.ComponentID, recPC =>
-                            (recPC.Component?.Name, recPC.Count))
+                            (recPC.Component?.Name, recPC.Count, recPC.InReserve))
                     })
                     .ToList();
+            }
+        }
+
+        public void Reserve(ReserveComponentsBindingModel model)
+        {
+            using (var context = new PCShopDatabase())
+            {
+                var requestComponents = context.RequestComponents.FirstOrDefault(rec =>
+                rec.RequestID == model.RequestID && rec.ComponentID == model.ComponentID);
+                if (requestComponents == null)
+                {
+                    throw new Exception("Комплектующее не найдено в заявке");
+                }
+                requestComponents.InReserve = true;
+                context.SaveChanges();
             }
         }
     }

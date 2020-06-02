@@ -60,9 +60,21 @@ namespace PC_Shop_Business_Logic.Business_Logic
             });
         }
 
-        public void ResupplyWarehouse()
+        public void ReserveComponents(ReserveComponentsBindingModel model)
         {
-
+            var request = requestLogic.Read(new RequestBindingModel
+            {
+                ID = model.RequestID
+            })?[0];
+            if (request == null)
+            {
+                throw new Exception("Заявка не найдена");
+            }
+            if (request.Status != RequestStatus.Обрабатывается)
+            {
+                throw new Exception("Заявка не в статусе \"Обрабатывается\"");
+            }
+            requestLogic.Reserve(model);
         }
     }
 }

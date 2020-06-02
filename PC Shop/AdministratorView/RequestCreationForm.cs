@@ -18,7 +18,7 @@ namespace AdministratorView
         private readonly AdminBusinessLogic adminBusinessLogic;
         public int ID { set { Id = value; } }
         private int? Id;
-        private Dictionary<int, (string, int)> requestComponents;
+        private Dictionary<int, (string, int, bool)> requestComponents;
 
         public RequestCreationForm(AdminBusinessLogic adminBusinessLogic,
             IRequestLogic requestLogic, ISupplierLogic supplierLogic)
@@ -59,7 +59,7 @@ namespace AdministratorView
             }
             else
             {
-                requestComponents = new Dictionary<int, (string, int)>();
+                requestComponents = new Dictionary<int, (string, int, bool)>();
             }
         }
 
@@ -120,11 +120,11 @@ namespace AdministratorView
             {
                 if (requestComponents.ContainsKey(form.ID))
                 {
-                    requestComponents[form.ID] = (form.ComponentName, form.Count);
+                    requestComponents[form.ID] = (form.ComponentName, form.Count, false);
                 }
                 else
                 {
-                    requestComponents.Add(form.ID, (form.ComponentName, form.Count));
+                    requestComponents.Add(form.ID, (form.ComponentName, form.Count, false));
                 }
                 LoadComponents();
             }
@@ -140,7 +140,7 @@ namespace AdministratorView
                 form.Count = requestComponents[ID].Item2;
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    requestComponents[form.ID] = (form.ComponentName, form.Count);
+                    requestComponents[form.ID] = (form.ComponentName, form.Count, false);
                     LoadComponents();
                 }
             }

@@ -9,6 +9,8 @@ namespace PC_Shop_Database_Implementation.Models
         public int ComponentID { get; set; }
         [Required]
         public int Count { get; set; }
+        [Required]
+        public bool InReserve { get; set; }
         public virtual Request Request { get; set; }
         public virtual Component Component { get; set; }
     }

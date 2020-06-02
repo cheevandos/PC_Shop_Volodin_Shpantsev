@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PC_Shop_Business_Logic.Binding_Models;
 using PC_Shop_Business_Logic.Interfaces;
+using PC_Shop_Business_Logic.Business_Logic;
 
 namespace SupplierView.Controllers
 {
@@ -8,11 +9,14 @@ namespace SupplierView.Controllers
     {
         private readonly IRequestLogic requestLogic;
         private readonly IWarehouseLogic warehouseLogic;
+        private readonly SupplierBusinessLogic supplierLogic;
 
-        public AccountController(IRequestLogic requestLogic, IWarehouseLogic warehouseLogic)
+        public AccountController(SupplierBusinessLogic supplierLogic,
+            IRequestLogic requestLogic, IWarehouseLogic warehouseLogic)
         {
             this.requestLogic = requestLogic;
             this.warehouseLogic = warehouseLogic;
+            this.supplierLogic = supplierLogic;
         }
 
         public IActionResult Main()
@@ -62,6 +66,46 @@ namespace SupplierView.Controllers
                 Count = count
             });
             return View(warehouses);
+        }
+
+        public IActionResult Reserve(int reqID, int compID)
+        {
+            if (Program.Supplier == null)
+            {
+                return new UnauthorizedResult();
+            }
+            supplierLogic.ReserveComponents(new ReserveComponentsBindingModel
+            {
+                RequestID = reqID,
+                ComponentID = compID
+            });
+            return RedirectToAction("RequestView", new { id = reqID });
+        }
+
+        public IActionResult AcceptRequest(int id)
+        {
+            if (Program.Supplier == null)
+            {
+                return new UnauthorizedResult();
+            }
+            supplierLogic.AcceptRequest(new ChangeRequestStatusBindingModel
+            {
+                RequestID = id
+            });
+            return RedirectToAction("Main");
+        }
+
+        public IActionResult CompleteRequest(int id)
+        {
+            if (Program.Supplier == null)
+            {
+                return new UnauthorizedResult();
+            }
+            supplierLogic.CompleteRequest(new ChangeRequestStatusBindingModel
+            {
+                RequestID = id
+            });
+            return RedirectToAction("Main");
         }
     }
 }

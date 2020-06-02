@@ -13,6 +13,6 @@ namespace PC_Shop_Business_Logic.View_Models
         public string SupplierLogin { get; set; }
         [DisplayName("Статус")]
         public RequestStatus Status { get; set; }
-        public Dictionary<int, (string, int)> Components { get; set; }
+        public Dictionary<int, (string, int, bool)> Components { get; set; }
     }
 }

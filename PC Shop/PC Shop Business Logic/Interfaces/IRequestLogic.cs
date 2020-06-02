@@ -9,5 +9,6 @@ namespace PC_Shop_Business_Logic.Interfaces
         void CreateOrUpdate(RequestBindingModel model);
         void Delete(RequestBindingModel model);
         List<RequestViewModel> Read(RequestBindingModel model);
+        void Reserve(ReserveComponentsBindingModel model);
     }
 }

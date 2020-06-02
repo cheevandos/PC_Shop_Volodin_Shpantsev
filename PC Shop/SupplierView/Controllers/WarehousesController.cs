@@ -248,7 +248,11 @@ namespace SupplierView.Controllers
                 TempData["ReserveError"] = ex.Message;
                 return RedirectToAction("RequestView", "Account", new { id = requestID });
             }
-            return RedirectToAction("RequestView", "Account", new { id = requestID });
+            return RedirectToAction("Reserve", "Account", new 
+            { 
+                reqID = requestID,
+                compID = componentID
+            });
         }
     }
 }

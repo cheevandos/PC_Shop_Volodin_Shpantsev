@@ -48,8 +48,15 @@
                 <td class="text-center">
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
-                <td>
-                    <a class="btn btn-outline-info btn-sm" asp-action="RequestView" asp-route-id="@item.ID">Просмотр заявки</a>
+                <td class="text-center">
+                    @if (item.Status == PC_Shop_Business_Logic.Enums.RequestStatus.Обрабатывается)
+                    {
+                        <a class="btn btn-outline-info btn-sm" asp-action="RequestView" asp-route-id="@item.ID">Просмотр заявки</a>
+                    }
+                    @if (item.Status == PC_Shop_Business_Logic.Enums.RequestStatus.Создана)
+                    {
+                        <a class="btn btn-outline-info btn-sm" asp-action="AcceptRequest" asp-route-id="@item.ID">Принять в обработку</a>
+                    }
                 </td>
             </tr>
         }

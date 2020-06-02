@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PC_Shop_Database_Implementation;
 
 namespace PC_Shop_Database_Implementation.Migrations
 {
     [DbContext(typeof(PCShopDatabase))]
-    partial class PCShopDatabaseModelSnapshot : ModelSnapshot
+    [Migration("20200602055023_DBUpdated")]
+    partial class DBUpdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,7 +149,7 @@ namespace PC_Shop_Database_Implementation.Migrations
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
-                    b.Property<bool>("InReserve")
+                    b.Property<bool>("IsReserved")
                         .HasColumnType("bit");
 
                     b.Property<int>("RequestID")
