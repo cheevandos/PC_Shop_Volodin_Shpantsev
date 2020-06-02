@@ -45,7 +45,7 @@ namespace SupplierView.Controllers
             ViewBag.RequestID = id;
             var components = requestLogic.Read(new RequestBindingModel
             {
-                SupplierID = Program.Supplier.ID
+                ID = id
             })?[0].Components;
             return View(components);
         }

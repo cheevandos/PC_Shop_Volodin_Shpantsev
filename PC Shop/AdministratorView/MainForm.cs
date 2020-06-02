@@ -264,7 +264,7 @@ namespace AdministratorView
 
         private void RefreshRequestsButton_Click(object sender, EventArgs e)
         {
-            LoadOrders();
+            LoadRequests();
         }
 
         private void UpdateButtons()
