@@ -57,6 +57,11 @@
                     {
                         <a class="btn btn-outline-info btn-sm" asp-action="AcceptRequest" asp-route-id="@item.ID">Принять в обработку</a>
                     }
+                    @if (item.Status == PC_Shop_Business_Logic.Enums.RequestStatus.Исполнена)
+                    {
+                        <a class="btn btn-outline-primary btn-sm" asp-action="SendWordReport" asp-route-id="@item.ID">Отчет Word</a>
+                        <a class="btn btn-outline-success btn-sm">Отчет Excel</a>
+                    }
                 </td>
             </tr>
         }

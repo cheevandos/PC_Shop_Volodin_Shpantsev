@@ -5,4 +5,9 @@
     <RootNamespace>PC_Shop_Business_Logic</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.11.0" />
+    <PackageReference Include="MailKit" Version="2.7.0" />
+  </ItemGroup>
+
 </Project>

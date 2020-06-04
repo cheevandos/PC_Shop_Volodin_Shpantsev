@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PC_Shop_Business_Logic.Binding_Models;
-using PC_Shop_Business_Logic.Interfaces;
 using PC_Shop_Business_Logic.Business_Logic;
+using PC_Shop_Business_Logic.Helpers;
+using PC_Shop_Business_Logic.Interfaces;
+using System;
+using System.Diagnostics;
 
 namespace SupplierView.Controllers
 {
@@ -105,6 +108,28 @@ namespace SupplierView.Controllers
             {
                 RequestID = id
             });
+            return RedirectToAction("Main");
+        }
+
+        public IActionResult SendWordReport(int id)
+        {
+            if (Program.Supplier == null)
+            {
+                return new UnauthorizedResult();
+            }
+            try
+            {
+                supplierLogic.SendWordReport(new WordInfo
+                {
+                    RequestID = id,
+                    SupplierName = Program.Supplier.FullName
+                });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                Debug.WriteLine(ex.StackTrace);
+            }
             return RedirectToAction("Main");
         }
     }

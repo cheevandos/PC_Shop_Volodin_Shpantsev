@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PC Shop Database Implementa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdministratorView", "AdministratorView\AdministratorView.csproj", "{9695D56D-AE38-43C6-8C54-BA7557EF1457}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupplierView", "SupplierView\SupplierView.csproj", "{94B252A3-417A-44B4-A2E8-F2A62F2BD1E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SupplierView", "SupplierView\SupplierView.csproj", "{94B252A3-417A-44B4-A2E8-F2A62F2BD1E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

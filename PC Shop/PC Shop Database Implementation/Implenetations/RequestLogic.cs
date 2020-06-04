@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PC_Shop_Business_Logic.Binding_Models;
+using PC_Shop_Business_Logic.Enums;
 using PC_Shop_Business_Logic.Interfaces;
 using PC_Shop_Business_Logic.View_Models;
-using PC_Shop_Business_Logic.Enums;
 using PC_Shop_Database_Implementation.Models;
 using System;
 using System.Collections.Generic;

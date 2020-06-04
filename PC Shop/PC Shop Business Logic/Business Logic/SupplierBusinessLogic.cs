@@ -1,7 +1,9 @@
-﻿using System;
-using PC_Shop_Business_Logic.Binding_Models;
-using PC_Shop_Business_Logic.Interfaces;
+﻿using PC_Shop_Business_Logic.Binding_Models;
 using PC_Shop_Business_Logic.Enums;
+using PC_Shop_Business_Logic.Helpers;
+using PC_Shop_Business_Logic.Interfaces;
+using System;
+using System.IO;
 
 namespace PC_Shop_Business_Logic.Business_Logic
 {
@@ -75,6 +77,38 @@ namespace PC_Shop_Business_Logic.Business_Logic
                 throw new Exception("Заявка не в статусе \"Обрабатывается\"");
             }
             requestLogic.Reserve(model);
+        }
+
+        public void SendWordReport(WordInfo wordInfo)
+        {
+            string path = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), 
+                "report(request_" + wordInfo.RequestID + ").docx");
+            var request = requestLogic.Read(new RequestBindingModel
+            {
+                ID = wordInfo.RequestID
+            })?[0];
+            wordInfo.FileName = path;
+            wordInfo.CompletionDate = DateTime.Now;
+            wordInfo.RequestComponents = request.Components;
+            WordService.CreateDoc(wordInfo);
+            string messageText = "Заявка #"
+                + wordInfo.RequestID.ToString()
+                + " исполнена. Отчет прикреплен к письму.";
+            EmailSendingInfo  emailInfo = new EmailSendingInfo
+            {
+                FilePath = path,
+                RecipientMail = "",
+                RecipientName = "",
+                ReportType = ReportType.docx,
+                SenderMail = "",
+                SenderName = "",
+                SenderPassword = "",
+                SendingDate = DateTime.Now,
+                MessageSubject = "Отчет по заявке #" + wordInfo.RequestID.ToString(),
+                MessageText = messageText,
+            };
+            EmailService.SendEmail(emailInfo);
         }
     }
 }
