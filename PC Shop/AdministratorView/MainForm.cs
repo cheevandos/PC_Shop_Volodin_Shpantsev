@@ -68,7 +68,7 @@ namespace AdministratorView
                         requestsGridView.DataSource = requestsList;
                         requestsGridView.Columns[0].Visible = false;
                         requestsGridView.Columns[1].Visible = false;
-                        requestsGridView.Columns[4].Visible = false;
+                        requestsGridView.Columns[5].Visible = false;
                         requestsGridView.AutoResizeColumns();
                     }
                 }
@@ -113,12 +113,6 @@ namespace AdministratorView
             var form = Container.Resolve<RequestCreationForm>();
             form.ShowDialog();
             LoadRequests();
-        }
-
-        private void NewSupplierToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = Container.Resolve<SupplierCreationForm>();
-            form.ShowDialog();
         }
 
         private void StartPreparingButton_Click(object sender, EventArgs e)

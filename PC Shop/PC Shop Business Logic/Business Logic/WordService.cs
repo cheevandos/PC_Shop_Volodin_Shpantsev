@@ -8,7 +8,7 @@ namespace PC_Shop_Business_Logic.Business_Logic
 {
     public class WordService
     {
-        public static void CreateDoc(WordInfo info)
+        public static void CreateDoc(RequestReportInfo info)
         {
             using (WordprocessingDocument doc = WordprocessingDocument
                 .Create(info.FileName, WordprocessingDocumentType.Document))

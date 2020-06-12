@@ -26,6 +26,7 @@ namespace SupplierView
             services.AddTransient<IRequestLogic, RequestLogic>();
             services.AddTransient<IComponentLogic, ComponentLogic>();
             services.AddTransient<IWarehouseLogic, WarehouseLogic>();
+            services.AddTransient<IComponentMovementLogic, ComponentMovementLogic>();
             services.AddTransient<SupplierBusinessLogic>();
         }
 

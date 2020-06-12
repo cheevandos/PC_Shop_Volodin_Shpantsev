@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PC_Shop_Business_Logic.Binding_Models;
 using PC_Shop_Business_Logic.Business_Logic;
+using PC_Shop_Business_Logic.Enums;
 using PC_Shop_Business_Logic.Helpers;
 using PC_Shop_Business_Logic.Interfaces;
 using System;
@@ -13,13 +14,16 @@ namespace SupplierView.Controllers
         private readonly IRequestLogic requestLogic;
         private readonly IWarehouseLogic warehouseLogic;
         private readonly SupplierBusinessLogic supplierLogic;
+        private readonly IComponentMovementLogic movementLogic;
 
         public AccountController(SupplierBusinessLogic supplierLogic,
-            IRequestLogic requestLogic, IWarehouseLogic warehouseLogic)
+            IRequestLogic requestLogic, IWarehouseLogic warehouseLogic,
+            IComponentMovementLogic movementLogic)
         {
             this.requestLogic = requestLogic;
             this.warehouseLogic = warehouseLogic;
             this.supplierLogic = supplierLogic;
+            this.movementLogic = movementLogic;
         }
 
         public IActionResult Main()
@@ -63,7 +67,7 @@ namespace SupplierView.Controllers
             ViewBag.Count = count;
             ViewBag.ComponentID = id;
             ViewBag.RequestID = requestID;
-            var warehouses = warehouseLogic.GetAvailable(new WarehouseComponentsBindingModel
+            var warehouses = warehouseLogic.GetAvailable(new ResupplyWarehouseBindingModel
             {
                 ComponentID = id,
                 Count = count
@@ -119,8 +123,9 @@ namespace SupplierView.Controllers
             }
             try
             {
-                supplierLogic.SendWordReport(new WordInfo
+                supplierLogic.SendReport(new RequestReportInfo
                 {
+                    ReportType = ReportType.docx,
                     RequestID = id,
                     SupplierName = Program.Supplier.FullName
                 });
@@ -131,6 +136,68 @@ namespace SupplierView.Controllers
                 Debug.WriteLine(ex.StackTrace);
             }
             return RedirectToAction("Main");
+        }
+
+        public IActionResult SendExcelReport(int id)
+        {
+            if (Program.Supplier == null)
+            {
+                return new UnauthorizedResult();
+            }
+            try
+            {
+                supplierLogic.SendReport(new RequestReportInfo
+                {
+                    ReportType = ReportType.xlsx,
+                    RequestID = id,
+                    SupplierName = Program.Supplier.FullName
+                });
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                Debug.WriteLine(ex.StackTrace);
+            }
+            return RedirectToAction("Main");
+        }
+
+        public IActionResult DateChoice()
+        {
+            if (Program.Supplier == null)
+            {
+                return new UnauthorizedResult();
+            }
+            return View("DateChoice");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult MovementReport([Bind("StartDate, EndDate")] ComponentMovementBindingModel model)
+        {
+            if (Program.Supplier == null)
+            {
+                return new UnauthorizedResult();
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    model.SupplierID = Program.Supplier.ID;
+                    var movements = movementLogic.Read(model);
+                    ViewBag.StartDate = model.StartDate;
+                    ViewBag.EndDate = model.EndDate;
+                    return View(movements);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", ex.Message);
+                    return View("DateChoice");
+                }
+            }
+            else
+            {
+                return View("DateChoice");
+            }
         }
     }
 }

@@ -1,0 +1,41 @@
+﻿@model PC_Shop_Business_Logic.Binding_Models.ComponentMovementBindingModel
+@{
+    ViewData["Title"] = "Отчет";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Отчет по движению комплектующих</h1>
+</div>
+
+<hr />
+
+<div class="text-center">
+    <h3>Выберите период</h3>
+</div>
+
+<hr/>
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form asp-controller="Account" asp-action="MovementReport">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SupplierID" />
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label">Начало</label>
+                <input asp-for="StartDate" class="form-control" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label">Начало</label>
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="form-row justify-content-center">
+                    <input type="submit" value="Получить отчет" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

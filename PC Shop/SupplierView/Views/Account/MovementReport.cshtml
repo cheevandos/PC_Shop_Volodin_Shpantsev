@@ -1,0 +1,58 @@
+﻿@model IEnumerable<PC_Shop_Business_Logic.View_Models.ComponentMovementViewModel>
+
+@{
+    ViewData["Title"] = "MovementReport";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Отчет по движению комплектующих</h1>
+</div>
+
+<div class="text-center">
+    <h3>C @ViewBag.StartDate по @ViewBag.EndDate</h3>
+</div>
+
+<hr />
+
+<p>
+    <a class="btn btn-outline-secondary" asp-action="Main">Вернуться к списку заявок</a>
+    <a class="btn btn-outline-danger">Отправить PDF отчет на почту</a>
+</p>
+
+<table class="table table-hover table-bordered">
+    <thead class="thead thead-light">
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.ComponentName)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Count)
+            </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td class="text-left">
+                    @Html.DisplayFor(modelItem => item.ComponentName)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Count)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

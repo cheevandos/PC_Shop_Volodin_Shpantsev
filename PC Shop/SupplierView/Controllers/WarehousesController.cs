@@ -10,11 +10,14 @@ namespace SupplierView.Controllers
     {
         private readonly IWarehouseLogic warehouseLogic;
         private readonly IComponentLogic componentLogic;
+        private readonly IComponentMovementLogic movementLogic;
 
-        public WarehousesController(IWarehouseLogic warehouseLogic, IComponentLogic componentLogic)
+        public WarehousesController(IWarehouseLogic warehouseLogic, IComponentLogic componentLogic, 
+            IComponentMovementLogic movementLogic)
         {
             this.warehouseLogic = warehouseLogic;
             this.componentLogic = componentLogic;
+            this.movementLogic = movementLogic;
         }
 
         public IActionResult List()
@@ -203,7 +206,7 @@ namespace SupplierView.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Resupply([Bind("WarehouseID, ComponentID, Count")] WarehouseComponentsBindingModel model)
+        public IActionResult Resupply([Bind("WarehouseID, ComponentID, Count")] ResupplyWarehouseBindingModel model)
         {
             if (Program.Supplier == null)
             {
@@ -214,6 +217,9 @@ namespace SupplierView.Controllers
                 try
                 {
                     warehouseLogic.Resupply(model);
+                    model.Date = DateTime.Now;
+                    model.SupplierID = Program.Supplier.ID;
+                    movementLogic.Insert(model);
                 }
                 catch (Exception ex)
                 {
@@ -236,7 +242,7 @@ namespace SupplierView.Controllers
             }
             try
             {
-                warehouseLogic.Reserve(new WarehouseComponentsBindingModel
+                warehouseLogic.Reserve(new ResupplyWarehouseBindingModel
                 {
                     WarehouseID = warehouseID,
                     ComponentID = componentID,

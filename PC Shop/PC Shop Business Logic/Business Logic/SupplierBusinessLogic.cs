@@ -10,10 +10,12 @@ namespace PC_Shop_Business_Logic.Business_Logic
     public class SupplierBusinessLogic
     {
         private readonly IRequestLogic requestLogic;
+        private readonly IComponentMovementLogic movementLogic;
 
-        public SupplierBusinessLogic(IRequestLogic requestLogic)
+        public SupplierBusinessLogic(IRequestLogic requestLogic, IComponentMovementLogic movementLogic)
         {
             this.requestLogic = requestLogic;
+            this.movementLogic = movementLogic;
         }
 
         public void AcceptRequest(ChangeRequestStatusBindingModel model)
@@ -53,13 +55,17 @@ namespace PC_Shop_Business_Logic.Business_Logic
             {
                 throw new Exception("Заявка не в статусе \"Обрабатывается\"");
             }
-            requestLogic.CreateOrUpdate(new RequestBindingModel
+            RequestBindingModel requestModel = new RequestBindingModel
             {
                 ID = request.ID,
                 SupplierID = request.SupplierID,
                 Status = RequestStatus.Исполнена,
-                Components = request.Components
-            });
+                Components = request.Components,
+                CompletionDate = DateTime.Now
+            };
+            movementLogic.Delete(requestModel);
+
+            requestLogic.CreateOrUpdate(requestModel);
         }
 
         public void ReserveComponents(ReserveComponentsBindingModel model)
@@ -79,33 +85,44 @@ namespace PC_Shop_Business_Logic.Business_Logic
             requestLogic.Reserve(model);
         }
 
-        public void SendWordReport(WordInfo wordInfo)
+        public void SendReport(RequestReportInfo reportInfo)
         {
-            string path = Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), 
-                "report(request_" + wordInfo.RequestID + ").docx");
             var request = requestLogic.Read(new RequestBindingModel
             {
-                ID = wordInfo.RequestID
+                ID = reportInfo.RequestID
             })?[0];
-            wordInfo.FileName = path;
-            wordInfo.CompletionDate = DateTime.Now;
-            wordInfo.RequestComponents = request.Components;
-            WordService.CreateDoc(wordInfo);
+            reportInfo.CompletionDate = request.CompletionDate.Value;
+            reportInfo.RequestComponents = request.Components;
+
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            switch (reportInfo.ReportType)
+            {
+                case ReportType.docx:
+                    path = Path.Combine(path, "report(request_" + reportInfo.RequestID + ").docx");
+                    reportInfo.FileName = path;
+                    WordService.CreateDoc(reportInfo);
+                    break;
+                case ReportType.xlsx:
+                    path = Path.Combine(path, "report(request_" + reportInfo.RequestID + ").xlsx");
+                    reportInfo.FileName = path;
+                    ExcelService.CreatePackage(reportInfo);
+                    break;
+            }
+
             string messageText = "Заявка #"
-                + wordInfo.RequestID.ToString()
+                + reportInfo.RequestID.ToString()
                 + " исполнена. Отчет прикреплен к письму.";
             EmailSendingInfo  emailInfo = new EmailSendingInfo
             {
                 FilePath = path,
-                RecipientMail = "",
+                RecipientMail = "appdata2101@protonmail.com",
                 RecipientName = "",
-                ReportType = ReportType.docx,
-                SenderMail = "",
-                SenderName = "",
+                ReportType = reportInfo.ReportType,
+                SenderMail = "dmitrij.volodin2020@gmail.com",
+                SenderName = "Дмитрий Володин",
                 SenderPassword = "",
                 SendingDate = DateTime.Now,
-                MessageSubject = "Отчет по заявке #" + wordInfo.RequestID.ToString(),
+                MessageSubject = "Отчет по заявке #" + reportInfo.RequestID.ToString(),
                 MessageText = messageText,
             };
             EmailService.SendEmail(emailInfo);

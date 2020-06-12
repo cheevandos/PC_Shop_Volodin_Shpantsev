@@ -24,5 +24,6 @@ namespace PC_Shop_Database_Implementation
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
         public virtual DbSet<WarehouseComponent> WarehouseComponents { get; set; }
+        public virtual DbSet<ComponentMovement> ComponentMovements { get; set; }
     }
 }

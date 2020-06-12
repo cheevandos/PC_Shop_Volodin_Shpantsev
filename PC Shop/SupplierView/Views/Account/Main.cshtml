@@ -10,6 +10,9 @@
             <li class="nav-item">
                 <a class="nav-link text-dark" asp-area="" asp-controller="Warehouses" asp-action="List">Склады</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="DateChoice">Отчет</a>
+            </li>
         </ul>
     </div>
 }
@@ -35,6 +38,9 @@
             <th class="text-center">
                 @Html.DisplayNameFor(model => model.Status)
             </th>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.CompletionDate)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -49,6 +55,9 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.CompletionDate)
+                </td>
+                <td class="text-center">
                     @if (item.Status == PC_Shop_Business_Logic.Enums.RequestStatus.Обрабатывается)
                     {
                         <a class="btn btn-outline-info btn-sm" asp-action="RequestView" asp-route-id="@item.ID">Просмотр заявки</a>
@@ -60,7 +69,7 @@
                     @if (item.Status == PC_Shop_Business_Logic.Enums.RequestStatus.Исполнена)
                     {
                         <a class="btn btn-outline-primary btn-sm" asp-action="SendWordReport" asp-route-id="@item.ID">Отчет Word</a>
-                        <a class="btn btn-outline-success btn-sm">Отчет Excel</a>
+                        <a class="btn btn-outline-success btn-sm" asp-action="SendExcelReport" asp-route-id="@item.ID">Отчет Excel</a>
                     }
                 </td>
             </tr>

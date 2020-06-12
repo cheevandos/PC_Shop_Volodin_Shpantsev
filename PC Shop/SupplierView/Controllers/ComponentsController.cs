@@ -48,7 +48,7 @@ namespace SupplierView.Controllers
             }
             ViewBag.componentName = component.Name;
             ViewBag.warehouseID = warehouseID;
-            return View(new WarehouseComponentsBindingModel
+            return View(new ResupplyWarehouseBindingModel
             {
                 ComponentID = componentID.Value,
                 WarehouseID = warehouseID.Value,

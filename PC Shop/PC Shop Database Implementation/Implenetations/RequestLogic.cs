@@ -45,6 +45,7 @@ namespace PC_Shop_Database_Implementation.Implenetations
                             request = new Request();
                             context.Requests.Add(request);
                         }
+                        request.CompletionDate = model.CompletionDate;
                         request.SupplierID = model.SupplierID;
                         request.Status = model.Status;
                         context.SaveChanges();
@@ -123,6 +124,7 @@ namespace PC_Shop_Database_Implementation.Implenetations
                         SupplierLogin = rec.Supplier.Login,
                         SupplierID = rec.SupplierID,
                         Status = rec.Status,
+                        CompletionDate = rec.CompletionDate,
                         Components = context.RequestComponents
                             .Include(recRC => recRC.Component)
                             .Where(recRC => recRC.RequestID == rec.ID)

@@ -21,5 +21,7 @@ namespace PC_Shop_Database_Implementation.Models
         public virtual List<Warehouse> Warehouses { get; set; }
         [ForeignKey("SupplierID")]
         public virtual List<Request> Requests { get; set; }
+        [ForeignKey("SupplierID")]
+        public virtual List<ComponentMovement> Movements { get; set; }
     }
 }

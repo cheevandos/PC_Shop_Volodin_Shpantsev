@@ -53,7 +53,6 @@
             this.suppliersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newSupplierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl.SuspendLayout();
             this.ordersTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ordersGridView)).BeginInit();
@@ -303,8 +302,7 @@
             this.componentsToolStripMenuItem,
             this.suppliersToolStripMenuItem,
             this.newOrderToolStripMenuItem,
-            this.reportsToolStripMenuItem,
-            this.newSupplierToolStripMenuItem});
+            this.reportsToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
             this.mainMenuStrip.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -358,14 +356,6 @@
             this.reportsToolStripMenuItem.Text = "Отчеты";
             this.reportsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // newSupplierToolStripMenuItem
-            // 
-            this.newSupplierToolStripMenuItem.Name = "newSupplierToolStripMenuItem";
-            this.newSupplierToolStripMenuItem.Size = new System.Drawing.Size(135, 25);
-            this.newSupplierToolStripMenuItem.Text = "Новый пост.";
-            this.newSupplierToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.newSupplierToolStripMenuItem.Click += new System.EventHandler(this.NewSupplierToolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
@@ -417,7 +407,6 @@
         private System.Windows.Forms.ToolStripMenuItem newOrderToolStripMenuItem;
         private System.Windows.Forms.Button refreshRequestsButton;
         private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem newSupplierToolStripMenuItem;
     }
 }
 

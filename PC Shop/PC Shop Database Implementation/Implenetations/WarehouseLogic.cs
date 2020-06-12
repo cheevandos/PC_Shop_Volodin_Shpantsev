@@ -104,7 +104,7 @@ namespace PC_Shop_Database_Implementation.Implenetations
             }
         }
 
-        public void Resupply(WarehouseComponentsBindingModel model)
+        public void Resupply(ResupplyWarehouseBindingModel model)
         {
             using (var context = new PCShopDatabase())
             {
@@ -137,7 +137,7 @@ namespace PC_Shop_Database_Implementation.Implenetations
             }
         }
 
-        public void Reserve(WarehouseComponentsBindingModel model)
+        public void Reserve(ResupplyWarehouseBindingModel model)
         {
             using (var context = new PCShopDatabase())
             {
@@ -163,7 +163,7 @@ namespace PC_Shop_Database_Implementation.Implenetations
             }
         }
 
-        public List<AvailableViewModel> GetAvailable(WarehouseComponentsBindingModel model)
+        public List<AvailableViewModel> GetAvailable(ResupplyWarehouseBindingModel model)
         {
             using (var context = new PCShopDatabase())
             {
