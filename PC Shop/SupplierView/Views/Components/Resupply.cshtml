@@ -4,6 +4,17 @@
     ViewData["Title"] = "Пополнение";
 }
 
+@section Links {
+    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="btn btn-secondary btn-sm" asp-area="" asp-controller="Warehouses" asp-action="List">Склады</a>
+                <a class="btn btn-secondary btn-sm" asp-area="" asp-controller="Account" asp-action="Main">Заявки</a>
+            </li>
+        </ul>
+    </div>
+}
+
 <div class="text-center">
     <h1 class="display-4">Пополнение склада №@ViewBag.warehouseID</h1>
 </div>
@@ -14,7 +25,7 @@
     <h3>@ViewBag.componentName</h3>
 </div>
 
-<hr/>
+<hr />
 
 <div class="row justify-content-center">
     <div class="col-md-4">
@@ -36,11 +47,12 @@
     </div>
 </div>
 
-<hr/>
+<hr />
 
 <div>
-    <a class="btn btn-outline-secondary" asp-action="List" 
+    <a class="btn btn-outline-secondary" asp-action="List"
        asp-route-warehouseID="@ViewBag.warehouseID">
-    Вернуться к списку комплектующих</a>
+        Вернуться к списку комплектующих
+    </a>
 </div>
 

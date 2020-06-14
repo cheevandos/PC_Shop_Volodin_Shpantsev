@@ -42,6 +42,8 @@
             this.confirmButton = new System.Windows.Forms.Button();
             this.ordersGridView = new System.Windows.Forms.DataGridView();
             this.requestsTabPage = new System.Windows.Forms.TabPage();
+            this.excelEmailButton = new System.Windows.Forms.Button();
+            this.wordEmailButton = new System.Windows.Forms.Button();
             this.refreshRequestsButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.updateButton = new System.Windows.Forms.Button();
@@ -52,7 +54,7 @@
             this.componentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.suppliersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl.SuspendLayout();
             this.ordersTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ordersGridView)).BeginInit();
@@ -194,6 +196,8 @@
             // 
             // requestsTabPage
             // 
+            this.requestsTabPage.Controls.Add(this.excelEmailButton);
+            this.requestsTabPage.Controls.Add(this.wordEmailButton);
             this.requestsTabPage.Controls.Add(this.refreshRequestsButton);
             this.requestsTabPage.Controls.Add(this.deleteButton);
             this.requestsTabPage.Controls.Add(this.updateButton);
@@ -207,13 +211,41 @@
             this.requestsTabPage.Text = "Заявки";
             this.requestsTabPage.UseVisualStyleBackColor = true;
             // 
+            // excelEmailButton
+            // 
+            this.excelEmailButton.BackColor = System.Drawing.Color.White;
+            this.excelEmailButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.excelEmailButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.excelEmailButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.excelEmailButton.Location = new System.Drawing.Point(942, 144);
+            this.excelEmailButton.Name = "excelEmailButton";
+            this.excelEmailButton.Size = new System.Drawing.Size(163, 40);
+            this.excelEmailButton.TabIndex = 11;
+            this.excelEmailButton.Text = "Письмо Excel";
+            this.excelEmailButton.UseVisualStyleBackColor = false;
+            this.excelEmailButton.Click += new System.EventHandler(this.ExcelEmailButton_Click);
+            // 
+            // wordEmailButton
+            // 
+            this.wordEmailButton.BackColor = System.Drawing.Color.White;
+            this.wordEmailButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.wordEmailButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.wordEmailButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.wordEmailButton.Location = new System.Drawing.Point(942, 98);
+            this.wordEmailButton.Name = "wordEmailButton";
+            this.wordEmailButton.Size = new System.Drawing.Size(163, 40);
+            this.wordEmailButton.TabIndex = 10;
+            this.wordEmailButton.Text = "Письмо Word";
+            this.wordEmailButton.UseVisualStyleBackColor = false;
+            this.wordEmailButton.Click += new System.EventHandler(this.WordEmailButton_Click);
+            // 
             // refreshRequestsButton
             // 
             this.refreshRequestsButton.BackColor = System.Drawing.Color.White;
             this.refreshRequestsButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.refreshRequestsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
             this.refreshRequestsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.refreshRequestsButton.Location = new System.Drawing.Point(942, 144);
+            this.refreshRequestsButton.Location = new System.Drawing.Point(943, 236);
             this.refreshRequestsButton.Name = "refreshRequestsButton";
             this.refreshRequestsButton.Size = new System.Drawing.Size(163, 40);
             this.refreshRequestsButton.TabIndex = 9;
@@ -227,7 +259,7 @@
             this.deleteButton.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
             this.deleteButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
             this.deleteButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.deleteButton.Location = new System.Drawing.Point(943, 98);
+            this.deleteButton.Location = new System.Drawing.Point(942, 190);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(163, 40);
             this.deleteButton.TabIndex = 8;
@@ -302,11 +334,11 @@
             this.componentsToolStripMenuItem,
             this.suppliersToolStripMenuItem,
             this.newOrderToolStripMenuItem,
-            this.reportsToolStripMenuItem});
+            this.reportToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
             this.mainMenuStrip.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.mainMenuStrip.Size = new System.Drawing.Size(148, 492);
+            this.mainMenuStrip.Size = new System.Drawing.Size(154, 492);
             this.mainMenuStrip.TabIndex = 1;
             this.mainMenuStrip.Text = "mainMenuStrip";
             // 
@@ -315,7 +347,7 @@
             this.computersToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.computersToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 10, 0, 5);
             this.computersToolStripMenuItem.Name = "computersToolStripMenuItem";
-            this.computersToolStripMenuItem.Size = new System.Drawing.Size(135, 25);
+            this.computersToolStripMenuItem.Size = new System.Drawing.Size(141, 25);
             this.computersToolStripMenuItem.Text = "ПК";
             this.computersToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.computersToolStripMenuItem.Click += new System.EventHandler(this.ComputersToolStripMenuItem_Click);
@@ -325,7 +357,7 @@
             this.componentsToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
             this.componentsToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.componentsToolStripMenuItem.Name = "componentsToolStripMenuItem";
-            this.componentsToolStripMenuItem.Size = new System.Drawing.Size(135, 25);
+            this.componentsToolStripMenuItem.Size = new System.Drawing.Size(141, 25);
             this.componentsToolStripMenuItem.Text = "Комплектующие";
             this.componentsToolStripMenuItem.Click += new System.EventHandler(this.ComponentsToolStripMenuItem_Click);
             // 
@@ -333,7 +365,7 @@
             // 
             this.suppliersToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.suppliersToolStripMenuItem.Name = "suppliersToolStripMenuItem";
-            this.suppliersToolStripMenuItem.Size = new System.Drawing.Size(135, 25);
+            this.suppliersToolStripMenuItem.Size = new System.Drawing.Size(141, 25);
             this.suppliersToolStripMenuItem.Text = "Поставщики";
             this.suppliersToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.suppliersToolStripMenuItem.Click += new System.EventHandler(this.SuppliersToolStripMenuItem_Click);
@@ -343,18 +375,19 @@
             this.newOrderToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.newOrderToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.newOrderToolStripMenuItem.Name = "newOrderToolStripMenuItem";
-            this.newOrderToolStripMenuItem.Size = new System.Drawing.Size(135, 25);
+            this.newOrderToolStripMenuItem.Size = new System.Drawing.Size(141, 25);
             this.newOrderToolStripMenuItem.Text = "Новый заказ";
             this.newOrderToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.newOrderToolStripMenuItem.Click += new System.EventHandler(this.NewOrderToolStripMenuItem_Click);
             // 
-            // reportsToolStripMenuItem
+            // reportToolStripMenuItem
             // 
-            this.reportsToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
-            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(135, 25);
-            this.reportsToolStripMenuItem.Text = "Отчеты";
-            this.reportsToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.reportToolStripMenuItem.Margin = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(141, 25);
+            this.reportToolStripMenuItem.Text = "Отчет по заказам";
+            this.reportToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.reportToolStripMenuItem.Click += new System.EventHandler(this.ReportToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -406,7 +439,9 @@
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.ToolStripMenuItem newOrderToolStripMenuItem;
         private System.Windows.Forms.Button refreshRequestsButton;
-        private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
+        private System.Windows.Forms.Button excelEmailButton;
+        private System.Windows.Forms.Button wordEmailButton;
     }
 }
 

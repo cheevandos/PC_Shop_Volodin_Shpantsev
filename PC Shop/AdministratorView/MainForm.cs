@@ -1,13 +1,13 @@
 ﻿using PC_Shop_Business_Logic.Binding_Models;
 using PC_Shop_Business_Logic.Business_Logic;
-using PC_Shop_Business_Logic.View_Models;
-using PC_Shop_Business_Logic.Interfaces;
 using PC_Shop_Business_Logic.Enums;
+using PC_Shop_Business_Logic.Helpers;
+using PC_Shop_Business_Logic.Interfaces;
+using PC_Shop_Business_Logic.View_Models;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Unity;
-using PC_Shop_Database_Implementation.Models;
 
 namespace AdministratorView
 {
@@ -288,6 +288,86 @@ namespace AdministratorView
         private void OrdersGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             UpdateButtons();
+        }
+
+        private void WordEmailButton_Click(object sender, EventArgs e)
+        {
+            if (requestsGridView.SelectedRows.Count == 1)
+            {
+                if (MessageBox.Show(
+                    "Отправить письмо с документном на почту?",
+                    "Требуется подтверждение",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    int requestID = Convert.ToInt32(requestsGridView.SelectedRows[0].Cells[0].Value);
+                    try
+                    {
+                        adminLogic.SendReport(new RequestReportInfo
+                        {
+                            ReportType = ReportType.docx,
+                            RequestID = requestID,
+                            SupplierEmail = requestsGridView.SelectedRows[0].Cells[2].Value.ToString()
+                        });
+                        MessageBox.Show(
+                            "Письмо успешно отправлено",
+                            "Уведомление",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(
+                            ex.Message,
+                            "Ошибка",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void ExcelEmailButton_Click(object sender, EventArgs e)
+        {
+            if (requestsGridView.SelectedRows.Count == 1)
+            {
+                if (MessageBox.Show(
+                    "Отправить письмо с документном на почту?",
+                    "Требуется подтверждение",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    int requestID = Convert.ToInt32(requestsGridView.SelectedRows[0].Cells[0].Value);
+                    try
+                    {
+                        adminLogic.SendReport(new RequestReportInfo
+                        {
+                            ReportType = ReportType.xlsx,
+                            RequestID = requestID,
+                            SupplierEmail = requestsGridView.SelectedRows[0].Cells[2].Value.ToString()
+                        });
+                        MessageBox.Show(
+                            "Письмо успешно отправлено",
+                            "Уведомление",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(
+                            ex.Message,
+                            "Ошибка",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void ReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<OrdersReportForm>();
+            form.ShowDialog();
         }
     }
 }

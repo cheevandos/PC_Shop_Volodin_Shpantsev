@@ -1,4 +1,5 @@
-﻿using PC_Shop_Business_Logic.Binding_Models;
+﻿using DocumentFormat.OpenXml.Drawing.Charts;
+using PC_Shop_Business_Logic.Binding_Models;
 using PC_Shop_Business_Logic.Enums;
 using PC_Shop_Business_Logic.Helpers;
 using PC_Shop_Business_Logic.Interfaces;
@@ -120,7 +121,7 @@ namespace PC_Shop_Business_Logic.Business_Logic
                 ReportType = reportInfo.ReportType,
                 SenderMail = "dmitrij.volodin2020@gmail.com",
                 SenderName = "Дмитрий Володин",
-                SenderPassword = "",
+                SenderPassword = "2708Vevuvi",
                 SendingDate = DateTime.Now,
                 MessageSubject = "Отчет по заявке #" + reportInfo.RequestID.ToString(),
                 MessageText = messageText,

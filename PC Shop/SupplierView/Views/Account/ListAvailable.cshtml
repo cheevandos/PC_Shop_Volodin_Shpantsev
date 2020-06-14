@@ -4,6 +4,17 @@
     ViewData["Title"] = "Список складов";
 }
 
+@section Links {
+    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="btn btn-secondary btn-sm" asp-area="" asp-controller="Warehouses" asp-action="List">Склады</a>
+                <a class="btn btn-secondary btn-sm" asp-area="" asp-controller="Account" asp-action="Main">Заявки</a>
+            </li>
+        </ul>
+    </div>
+}
+
 <div class="text-center">
     <h1 class="display-4">@ViewBag.ComponentName</h1>
 </div>
@@ -40,11 +51,12 @@
                     @Html.DisplayFor(modelItem => item.Count)
                 </td>
                 <td class="text-center">
-                    <a class="btn btn-outline-success btn-sm" asp-controller="Warehouses" 
-                       asp-action="Reserve" asp-route-warehouseID ="@item.WarehouseID" 
-                       asp-route-componentID="@ViewBag.ComponentID" asp-route-count="@ViewBag.Count" 
+                    <a class="btn btn-outline-success btn-sm" asp-controller="Warehouses"
+                       asp-action="Reserve" asp-route-warehouseID="@item.WarehouseID"
+                       asp-route-componentID="@ViewBag.ComponentID" asp-route-count="@ViewBag.Count"
                        asp-route-requestID="@ViewBag.RequestID">
-                    Зарезервировать</a>
+                        Зарезервировать
+                    </a>
                 </td>
             </tr>
         }

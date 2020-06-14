@@ -80,5 +80,27 @@ namespace PC_Shop_Database_Implementation.Implenetations
                 .ToList();
             }
         }
+
+        public List<ReportOrderViewModel> ReadForReport(OrderBindingModel model)
+        {
+            using (var context = new PCShopDatabase())
+            {
+                return context.Orders
+                .Include(rec => rec.Computer)
+                .Where(rec => model.StartDate.HasValue && model.EndDate.HasValue
+                && rec.CreationDate >= model.StartDate.Value
+                && rec.CreationDate <= model.EndDate.Value)
+                .Select(rec => new ReportOrderViewModel
+                {
+                    ComputerName = rec.Computer.Name,
+                    Count = rec.Count,
+                    Amount = rec.Amount,
+                    Status = rec.Status,
+                    CreationDate = rec.CreationDate,
+                    CompletionDate = rec.CompletionDate
+                })
+                .ToList();
+            }
+        }
     }
 }

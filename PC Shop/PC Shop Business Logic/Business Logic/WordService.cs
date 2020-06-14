@@ -13,11 +13,19 @@ namespace PC_Shop_Business_Logic.Business_Logic
             using (WordprocessingDocument doc = WordprocessingDocument
                 .Create(info.FileName, WordprocessingDocumentType.Document))
             {
-                string header = "Отчет по заявке №" + info.RequestID.ToString();
+                string header = "Заявка №" + info.RequestID.ToString();
                 Paragraph headerParagraph = CreateParagraph (0, 24, header, true, JustificationValues.Center);
-                string supplier = "Поставщик: " + info.SupplierName;
+                string supplier = "";
+                if (!string.IsNullOrEmpty(info.SupplierName))
+                {
+                    supplier = "Поставщик: " + info.SupplierName;
+                }
                 Paragraph supplierParagraph = CreateParagraph(0, 24, supplier, false, JustificationValues.Left);
-                string date = "Дата исполнения: " + info.CompletionDate.ToString();
+                string date = "";
+                if (info.CompletionDate.HasValue)
+                {
+                    date = "Дата исполнения: " + info.CompletionDate.Value.ToString();
+                }
                 Paragraph dateParagraph = CreateParagraph(0, 24, date, false, JustificationValues.Left);
 
                 List<TableRow> tableRows = new List<TableRow>();

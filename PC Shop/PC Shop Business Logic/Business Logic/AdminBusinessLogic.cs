@@ -2,6 +2,9 @@
 using PC_Shop_Business_Logic.Binding_Models;
 using PC_Shop_Business_Logic.Interfaces;
 using PC_Shop_Business_Logic.Enums;
+using PC_Shop_Business_Logic.Helpers;
+using System.IO;
+using DocumentFormat.OpenXml.Drawing.Charts;
 
 namespace PC_Shop_Business_Logic.Business_Logic
 {
@@ -164,6 +167,86 @@ namespace PC_Shop_Business_Logic.Business_Logic
                 throw new Exception("Невозможно изменить заявку." +
                     " Заявка исполнена или находится в обработке");
             }
+        }
+
+        public void SendReport(RequestReportInfo reportInfo)
+        {
+            var request = requestLogic.Read(new RequestBindingModel
+            {
+                ID = reportInfo.RequestID
+            })?[0];
+            if (request.Status != RequestStatus.Создана)
+            {
+                throw new Exception("Заявка уже в обработке или исполнена");
+            }
+            reportInfo.RequestComponents = request.Components;
+            reportInfo.CompletionDate = null;
+            reportInfo.SupplierName = null;
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            switch (reportInfo.ReportType)
+            {
+                case ReportType.docx:
+                    path = Path.Combine(path, "new_request_" + reportInfo.RequestID + ".docx");
+                    reportInfo.FileName = path;
+                    WordService.CreateDoc(reportInfo);
+                    break;
+                case ReportType.xlsx:
+                    path = Path.Combine(path, "new_request_" + reportInfo.RequestID + ".xlsx");
+                    reportInfo.FileName = path;
+                    ExcelService.CreatePackage(reportInfo);
+                    break;
+            }
+
+            string messageText = "Заявка #"
+               + reportInfo.RequestID.ToString()
+               + " создана. Список комплектующих прикреплен к письму.";
+            EmailSendingInfo emailInfo = new EmailSendingInfo
+            {
+                FilePath = path,
+                RecipientMail = reportInfo.SupplierEmail,
+                RecipientName = "",
+                ReportType = reportInfo.ReportType,
+                SenderMail = "dmitrij.volodin2020@gmail.com",
+                SenderName = "Дмитрий Володин",
+                SenderPassword = "2708Vevuvi",
+                SendingDate = DateTime.Now,
+                MessageSubject = "Новая заявка #" + reportInfo.RequestID.ToString(),
+                MessageText = messageText,
+            };
+            EmailService.SendEmail(emailInfo);
+        }
+
+        public void SaveAndSendPdf(OrdersReportInfo reportInfo)
+        {
+            var orders = orderLogic.ReadForReport(new OrderBindingModel
+            {
+                StartDate = reportInfo.StartDate,
+                EndDate = reportInfo.EndDate
+            });
+            reportInfo.Orders = orders;
+            string path = Path.Combine(
+                Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), 
+                "orders_report_" + DateTime.Now.ToLongDateString() + ".pdf");
+            reportInfo.FileName = path;
+            PdfService.CreateDoc(reportInfo);
+            string messageText = "Отчет по заказам с"
+                + reportInfo.StartDate.ToShortDateString()
+                + " по " + reportInfo.EndDate.ToShortDateString();
+            EmailSendingInfo emailInfo = new EmailSendingInfo
+            {
+                FilePath = path,
+                RecipientMail = reportInfo.RecipientEmail,
+                RecipientName = "",
+                ReportType = ReportType.pdf,
+                SenderMail = "dmitrij.volodin2020@gmail.com",
+                SenderName = "Дмитрий Володин",
+                SenderPassword = "2708Vevuvi",
+                SendingDate = DateTime.Now,
+                MessageSubject = "Отчет по заказам от " 
+                + DateTime.Today.ToLongDateString(),
+                MessageText = messageText,
+            };
+            EmailService.SendEmail(emailInfo);
         }
     }
 }

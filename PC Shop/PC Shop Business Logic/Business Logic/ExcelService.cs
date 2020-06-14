@@ -418,7 +418,7 @@ namespace PC_Shop_Business_Logic.Business_Logic
             };
             CellValue cellValue1 = new CellValue
             {
-                Text = "Отчет по заявке №" + info.RequestID.ToString()
+                Text = "Заявка №" + info.RequestID.ToString()
             };
             cell1.Append(cellValue1);
             Cell cell2 = new Cell() { CellReference = "B1", StyleIndex = (UInt32Value)2U };
@@ -442,10 +442,11 @@ namespace PC_Shop_Business_Logic.Business_Logic
                 StyleIndex = (UInt32Value)4U,
                 DataType = CellValues.String
             };
-            CellValue cellValue2 = new CellValue
+            CellValue cellValue2 = new CellValue();
+            if (!string.IsNullOrEmpty(info.SupplierName))
             {
-                Text = "Поставщик: " + info.SupplierName
-            };
+                cellValue2.Text = "Поставщик: " + info.SupplierName;
+            }
             cell4.Append(cellValue2);
             Cell cell5 = new Cell() { CellReference = "B2", StyleIndex = (UInt32Value)4U };
             Cell cell6 = new Cell() { CellReference = "C2", StyleIndex = (UInt32Value)4U };
@@ -468,10 +469,11 @@ namespace PC_Shop_Business_Logic.Business_Logic
                 StyleIndex = (UInt32Value)4U,
                 DataType = CellValues.String
             };
-            CellValue cellValue3 = new CellValue
+            CellValue cellValue3 = new CellValue();
+            if (info.CompletionDate.HasValue)
             {
-                Text = "Дата исполнения: " + info.CompletionDate.ToShortDateString()
-            };
+                cellValue3.Text = "Дата исполнения: " + info.CompletionDate.Value.ToShortDateString();
+            }
             cell7.Append(cellValue3);
             Cell cell8 = new Cell() { CellReference = "B3", StyleIndex = (UInt32Value)4U };
             Cell cell9 = new Cell() { CellReference = "C3", StyleIndex = (UInt32Value)4U };

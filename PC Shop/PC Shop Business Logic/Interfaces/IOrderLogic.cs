@@ -9,5 +9,6 @@ namespace PC_Shop_Business_Logic.Interfaces
         void CreateOrUpdate(OrderBindingModel model);
         void Delete(OrderBindingModel model);
         List<OrderViewModel> Read(OrderBindingModel model);
+        List<ReportOrderViewModel> ReadForReport(OrderBindingModel model);
     }
 }
